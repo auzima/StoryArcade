@@ -11,6 +11,7 @@ return new class extends Migration {
             $table->foreignId('game_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('current_scene'); // ID (string) d’une scène, pas de clé étrangère directe
+            $table->foreign('current_scene')->references('id')->on('scenes')->onDelete('cascade');
             $table->json('state'); // état du joueur (flags, scores...)
             $table->timestamps();
         });

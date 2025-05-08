@@ -30,4 +30,9 @@ class SaveGame extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function scene(): BelongsTo
+{
+    return $this->belongsTo(Scene::class, 'current_scene', 'id');
+}
 }
