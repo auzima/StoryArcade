@@ -2,36 +2,32 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class SaveGame extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'game_id',
         'user_id',
-        'current_scene_id',
-        'player_effects',
-        'inventory',
-        'game_state',
-        'last_saved_at'
+        'current_scene',
+        'state',
     ];
 
     protected $casts = [
-        'player_effects' => 'array',
-        'inventory' => 'array',
-        'game_state' => 'array',
-        'last_saved_at' => 'datetime'
+        'state' => 'array',
     ];
 
-    public function user()
+    public function game(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Game::class);
     }
 
-    public function currentScene()
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Scene::class, 'current_scene_id');
+        return $this->belongsTo(User::class);
     }
 }

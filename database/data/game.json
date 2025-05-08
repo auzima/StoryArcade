@@ -1,421 +1,421 @@
 {
-    "game": {
-      "title": "Sauvage & Lune",
-      "author": "AZ",
-      "version": "1.0",
-      "description": "Un jeu narratif où vos choix façonneront l'avenir de Luna, styliste indépendante et créatrice de mode éthique.",
-      "initial_state": {
-        "hasSeenAlex": false,
-        "burnout": 0,
-        "careerPoints": 0,
-        "relationshipPoints": 0,
-        "inspired": false,
-        "vogueAccepted": false
-      }
+  "game": {
+    "title": "Sauvage & Lune",
+    "author": "AZ",
+    "version": "1.0",
+    "description": "Un jeu narratif où vos choix façonneront l'avenir de Luna, styliste indépendante et créatrice de mode éthique.",
+    "initial_state": {
+      "hasSeenAlex": false,
+      "burnout": 0,
+      "careerPoints": 0,
+      "relationshipPoints": 0,
+      "inspired": false,
+      "vogueAccepted": false
+    }
+  },
+  "scenes": [
+    {
+      "id": "1",
+      "title": "Start",
+      "description": "Tu es **Luna**, styliste indépendante avec une marque éthique appelée \"Sauvage & Lune\".  \nTu jongles entre des commandes en retard, une vie sociale explosive, et des sentiments pas tout à fait digérés pour Alex — vidéaste charismatique et insaisissable.\n\nCe matin, tout bascule :  \n📧 Un mail t'invite à pitcher ta marque chez **Vogue**  \n💬 Un message d'**Alex** : \"On peut se voir ? J'ai besoin de te parler…\"  \n😴 Et ton corps te hurle de rester au lit, burnout incoming.\n\nTu dois choisir :\n\n[[Aller pitcher chez Vogue, c'est l'opportunité pro de ta vie->PitchVogue]]  \n[[Revoir Alex et clarifier enfin ce qu'il se passe entre vous->BrunchAlex]]  \n[[Prendre une journée OFF, ton mental en a besoin->RienFaire]]",
+      "image": "scene1.jpg",
+      "is_ending": false,
+      "choices": [
+        {
+          "text": "Aller pitcher chez Vogue, c'est l'opportunité pro de ta vie",
+          "next_scene": "PitchVogue",
+          "effects": {
+            "careerPoints": 1,
+            "burnout": 1
+          }
+        },
+        {
+          "text": "Revoir Alex et clarifier enfin ce qu'il se passe entre vous",
+          "next_scene": "BrunchAlex",
+          "effects": {
+            "hasSeenAlex": true,
+            "relationshipPoints": 1
+          }
+        },
+        {
+          "text": "Prendre une journée OFF, ton mental en a besoin",
+          "next_scene": "RienFaire",
+          "effects": {
+            "burnout": -1
+          }
+        }
+      ]
     },
-    "scenes": [
-      {
-        "id": "1",
-        "title": "Start",
-        "description": "Tu es **Luna**, styliste indépendante avec une marque éthique appelée \"Sauvage & Lune\".  \nTu jongles entre des commandes en retard, une vie sociale explosive, et des sentiments pas tout à fait digérés pour Alex — vidéaste charismatique et insaisissable.\n\nCe matin, tout bascule :  \n📧 Un mail t'invite à pitcher ta marque chez **Vogue**  \n💬 Un message d'**Alex** : \"On peut se voir ? J'ai besoin de te parler…\"  \n😴 Et ton corps te hurle de rester au lit, burnout incoming.\n\nTu dois choisir :\n\n[[Aller pitcher chez Vogue, c'est l'opportunité pro de ta vie->PitchVogue]]  \n[[Revoir Alex et clarifier enfin ce qu'il se passe entre vous->BrunchAlex]]  \n[[Prendre une journée OFF, ton mental en a besoin->RienFaire]]",
-        "image": "scene1.jpg",
-        "is_ending": false,
-        "choices": [
-          {
-            "text": "Aller pitcher chez Vogue, c'est l'opportunité pro de ta vie",
-            "next_scene": "PitchVogue",
-            "effects": {
-              "careerPoints": 1,
-              "burnout": 1
-            }
-          },
-          {
-            "text": "Revoir Alex et clarifier enfin ce qu'il se passe entre vous",
-            "next_scene": "BrunchAlex",
-            "effects": {
-              "hasSeenAlex": true,
-              "relationshipPoints": 1
-            }
-          },
-          {
-            "text": "Prendre une journée OFF, ton mental en a besoin",
-            "next_scene": "RienFaire",
-            "effects": {
-              "burnout": -1
-            }
+    {
+      "id": "2",
+      "title": "PitchVogue",
+      "description": "Tu arrives chez Vogue en blazer lilas, talons parfaits.  \nLe jury t'écoute, note, observe. Tu sens que tu impressionnes... mais une styliste concurrente arrive, **Léa**, avec un dossier très (trop) proche du tien.\n\nLe jury est partagé. Ils te recontactent \"très bientôt\".  \nAlex t'écrit dans la foulée : *\"J'ai fait du curry. Viens si tu veux.\"*\n\n[[Tu replies sur Alex pour ne pas craquer->MomentAlex]]  \n[[Tu décides de poster une série de looks pour buzzer malgré tout->ViralBoost]]",
+      "image": "scene2.jpg",
+      "is_ending": false,
+      "choices": [
+        {
+          "text": "Tu replies sur Alex pour ne pas craquer",
+          "next_scene": "MomentAlex",
+          "effects": {
+            "relationshipPoints": 1,
+            "burnout": -1
           }
-        ]
-      },
-      {
-        "id": "2",
-        "title": "PitchVogue",
-        "description": "Tu arrives chez Vogue en blazer lilas, talons parfaits.  \nLe jury t'écoute, note, observe. Tu sens que tu impressionnes... mais une styliste concurrente arrive, **Léa**, avec un dossier très (trop) proche du tien.\n\nLe jury est partagé. Ils te recontactent \"très bientôt\".  \nAlex t'écrit dans la foulée : *\"J'ai fait du curry. Viens si tu veux.\"*\n\n[[Tu replies sur Alex pour ne pas craquer->MomentAlex]]  \n[[Tu décides de poster une série de looks pour buzzer malgré tout->ViralBoost]]",
-        "image": "scene2.jpg",
-        "is_ending": false,
-        "choices": [
-          {
-            "text": "Tu replies sur Alex pour ne pas craquer",
-            "next_scene": "MomentAlex",
-            "effects": {
-              "relationshipPoints": 1,
-              "burnout": -1
-            }
-          },
-          {
-            "text": "Tu décides de poster une série de looks pour buzzer malgré tout",
-            "next_scene": "ViralBoost",
-            "effects": {
-              "careerPoints": 1,
-              "burnout": 1
-            }
-          }
-        ]
-      },
-      {
-        "id": "3",
-        "title": "BrunchAlex",
-        "description": "Alex est là, sourire doux, regard fuyant.  \n*\"J'ai eu peur. Mais je veux avancer. Et toi, dans ma vie.\"*\n\nVous parlez, riez, touchez des sujets sensibles… Et il te propose un voyage de repérages au Portugal pour un projet commun ✈️  \nMais ce week-end, tu dois livrer une collab avec une marque suisse.\n\n[[Tu choisis l'amour et pars en escapade->VoyageAlex]]  \n[[Tu restes focus, même si ça fait mal->FocusProjet]]",
-        "image": "scene3.jpg",
-        "is_ending": false,
-        "choices": [
-          {
-            "text": "Tu choisis l'amour et pars en escapade",
-            "next_scene": "VoyageAlex",
-            "effects": {
-              "relationshipPoints": 2,
-              "careerPoints": -1
-            }
-          },
-          {
-            "text": "Tu restes focus, même si ça fait mal",
-            "next_scene": "FocusProjet",
-            "effects": {
-              "careerPoints": 1,
-              "relationshipPoints": -1
-            }
-          }
-        ]
-      },
-      {
-        "id": "4",
-        "title": "RienFaire",
-        "description": "Tu regardes des vidéos de chiens déguisés en sushi pendant 2h.  \nPuis une story d'Alex apparaît : lui et Léa à un vernissage.  \nTon cœur se serre.\n\n[[Laisser libre cours à ton imagination->CarnetReveil]]  \n[[Tu scrolles jusqu'à t'endormir… et rien ne change->FinFlop]]",
-        "image": "scene4.jpg",
-        "is_ending": false,
-        "choices": [
-          {
-            "text": "Laisser libre cours à ton imagination",
-            "next_scene": "CarnetReveil",
-            "effects": {
-              "inspired": true
-            }
-          },
-          {
-            "text": "Tu scrolles jusqu'à t'endormir… et rien ne change",
-            "next_scene": "FinFlop",
-            "effects": {
-              "burnout": 1
-            }
-          }
-        ]
-      },
-      {
-        "id": "5",
-        "title": "CarnetReveil",
-        "description": "Tu ouvres un carnet et gribouilles un motif que tu n'avais jamais osé dessiner…  \nC'est brut, imparfait, mais vivant.  \nEt là, une idée folle : transformer ce motif en pièce unique.\n\n[[Créer une robe expérimentale à partir du dessin->RobeExperimentale]]  \n[[Le scanner et en faire un motif imprimé->ImpressionMotif]]  \n[[Le publier anonymement sur un compte Insta secondaire->InstaSecret]]  \n[[Tout déchirer et recommencer un nouveau carnet->CarnetNeuf]]",
-        "image": "scene5.jpg",
-        "is_ending": false,
-        "choices": [
-          {
-            "text": "Créer une robe expérimentale à partir du dessin",
-            "next_scene": "RobeExperimentale",
-            "effects": {
-              "careerPoints": 1,
-              "burnout": 1
-            }
-          },
-          {
-            "text": "Le scanner et en faire un motif imprimé",
-            "next_scene": "ImpressionMotif",
-            "effects": {
-              "careerPoints": 1
-            }
-          },
-          {
-            "text": "Le publier anonymement sur un compte Insta secondaire",
-            "next_scene": "InstaSecret",
-            "effects": {
-              "careerPoints": 1
-            }
-          },
-          {
-            "text": "Tout déchirer et recommencer un nouveau carnet",
-            "next_scene": "CarnetNeuf",
-            "effects": {
-              "burnout": -1
-            }
-          }
-        ]
-      },
-      {
-        "id": "6",
-        "title": "RobeExperimentale",
-        "description": "Tu passes la nuit à coudre. Le résultat est déroutant… mais puissant.  \nTu oses le poster. Une styliste d'avant-garde like.  \nLe lendemain, un journaliste de blog mode te contacte.\n\n[[Tu acceptes une interview pour expliquer ton processus->CollectionComeback]]",
-        "image": "scene6.jpg",
-        "is_ending": false,
-        "choices": [
-          {
-            "text": "Tu acceptes une interview pour expliquer ton processus",
-            "next_scene": "CollectionComeback",
-            "effects": {
-              "careerPoints": 1,
-              "vogueAccepted": true
-            }
-          }
-        ]
-      },
-      {
-        "id": "7",
-        "title": "ImpressionMotif",
-        "description": "Tu crées une série de tote bags imprimés et les envoies à quelques contacts.  \nUne boutique à Zürich t'écrit : \"Vous prenez les commandes pro ?\"  \nTu n'avais rien prévu, mais tu réponds : \"Oui.\"\n\n[[Tu développes une micro-collection autour du motif->CollectionComeback]]",
-        "image": "scene7.jpg",
-        "choices": [
-          {
-            "text": "Tu développes une micro-collection autour du motif",
-            "next_scene": "CollectionComeback",
-            "effects": {
-              "careerPoints": 2,
-              "burnout": 1
-            }
-          }
-        ]
-      },
-      {
-        "id": "8",
-        "title": "InstaSecret",
-        "description": "Tu postes anonymement. En 24h, le post est partagé 200 fois.  \nUn message arrive : *\"C'est toi Luna ? On adore ce que tu fais ici.\"*\n\n[[Tu replies honnêtement et acceptes de revendiquer ton style->CollectionComeback]]",
-        "image": "scene8.jpg",
-        "choices": [
-          {
-            "text": "Tu replies honnêtement et acceptes de revendiquer ton style",
-            "next_scene": "CollectionComeback",
-            "effects": {
-              "careerPoints": 2
-            }
-          }
-        ]
-      },
-      {
-        "id": "9",
-        "title": "CarnetNeuf",
-        "description": "Tu déchires les pages et recommences.  \nCette fois, tu laisses parler la colère, la nostalgie, l'espoir.  \nUne nouvelle série de croquis voit le jour.\n\n[[Tu organises une mini-expo chez toi pour montrer les dessins->CollectionComeback]]",
-        "image": "scene9.jpg",
-        "is_ending": false,
-        "choices": [
-          {
-            "text": "Tu organises une mini-expo chez toi pour montrer les dessins",
-            "next_scene": "CollectionComeback",
-            "effects": {
-              "careerPoints": 1,
-              "burnout": 1
-            }
-          }
-        ]
-      },
-      {
-        "id": "10",
-        "title": "MomentAlex",
-        "description": "Le dîner est simple, réconfortant. Vous parlez peu, mais les regards suffisent.  \nAlex t'embrasse. *\"Tu me manques, Luna.\"*\n\n[[Tu profites de ton bonheur et choisis de tout reconstruire autrement->FinLoveOnly]]  \n[[Tu te lances à fond pour reprendre ta place, le cœur plein->RevancheStylée]]",
-        "image": "scene10.jpg",
-        "choices": [
-          {
-            "text": "Tu profites de ton bonheur et choisis de tout reconstruire autrement",
-            "next_scene": "FinLoveOnly",
-            "effects": {
-              "relationshipPoints": 2
-            }
-          },
-          {
-            "text": "Tu te lances à fond pour reprendre ta place, le cœur plein",
-            "next_scene": "RevancheStylée",
-            "effects": {
-              "relationshipPoints": 1,
-              "careerPoints": 1,
-              "burnout": 1
-            }
-          }
-        ]
-      },
-      {
-        "id": "11",
-        "title": "ViralBoost",
-        "description": "Tu crées une mini-campagne maison avec ton trépied et ta vibe de queen.  \nLes likes pleuvent. Une marque parisienne te DM : \"On veut un call.\"  \nEt Alex te laisse un vocal : *\"T'as pas besoin de moi. Mais j'aimerais en faire partie.\"*\n\n[[Tu lui réponds : tu veux les deux->FinCarriereLove]]  \n[[Tu restes centrée sur ton glow-up solo->FinCarriereOnly]]",
-        "image": "scene11.jpg",
-        "is_ending": false,
-        "choices": [
-          {
-            "text": "Tu lui réponds : tu veux les deux",
-            "next_scene": "FinCarriereLove",
-            "effects": {
-              "careerPoints": 1,
-              "relationshipPoints": 1
-            }
-          },
-          {
-            "text": "Tu restes centrée sur ton glow-up solo",
-            "next_scene": "FinCarriereOnly",
-            "effects": {
-              "careerPoints": 2
-            }
-          }
-        ]
-      },
-      {
-        "id": "12",
-        "title": "VoyageAlex",
-        "description": "Les paysages sont beaux. Alex est doux. Vous créez une série de photos sublimes.  \nMais à ton retour, ta marque a été copiée par une influenceuse…  \nTu n'as pas bougé pendant une semaine, et ça t'a coûté.\n\n[[Tu assumes ton choix amoureux, coûte que coûte->FinLoveOnly]]  \n[[Tu te bats pour récupérer ta crédibilité en ligne->RevancheStylée]]",
-        "image": "scene12.jpg",
-        "is_ending": false,
-        "choices": [
-          {
-            "text": "Tu assumes ton choix amoureux, coûte que coûte",
-            "next_scene": "FinLoveOnly",
-            "effects": {
-              "relationshipPoints": 1,
-              "careerPoints": -1
-            }
-          },
-          {
-            "text": "Tu te bats pour récupérer ta crédibilité en ligne",
-            "next_scene": "RevancheStylée",
-            "effects": {
-              "careerPoints": 1,
-              "burnout": 1
-            }
-          }
-        ]
-      },
-      {
-        "id": "13",
-        "title": "FocusProjet",
-        "description": "Tu livres ton projet en temps et en heure. La marque adore.  \nMais Alex s'éloigne. Plus de messages.\n\n[[Tu relances Alex avec vulnérabilité->FinCarriereLove]]  \n[[Tu lâches prise et acceptes le glow-up solo->FinCarriereOnly]]",
-        "image": "scene13.jpg",
-        "is_ending": false,
-        "choices": [
-          {
-            "text": "Tu relances Alex avec vulnérabilité",
-            "next_scene": "FinCarriereLove",
-            "effects": {
-              "relationshipPoints": 1
-            },
-            "conditions": {
-              "relationshipPoints": { "gte": 1 }
-            }
-          },
-          {
-            "text": "Tu lâches prise et acceptes le glow-up solo",
-            "next_scene": "FinCarriereOnly",
-            "effects": {
-              "careerPoints": 1
-            }
-          }
-        ]
-      },
-      {
-        "id": "14",
-        "title": "CollectionComeback",
-        "description": "Tu travailles jour et nuit.  \nTon design casse les codes : dentelle brute, typo punk, touches dorées.  \nUn blog mode t'appelle. Une galerie veut l'exposer.  \nMais... Alex est avec Léa maintenant.\n\n[[Tu t'effondres mais transformes ta douleur en art->FinCarriereOnly]]  \n[[Tu lui écris une lettre honnête et tu passes à autre chose->FinLoveOnly]]",
-        "image": "scene14.jpg",
-        "is_ending": false,
-        "choices": [
-          {
-            "text": "Tu t'effondres mais transformes ta douleur en art",
-            "next_scene": "FinCarriereOnly",
-            "effects": {
-              "careerPoints": 2,
-              "burnout": 1
-            }
-          },
-          {
-            "text": "Tu lui écris une lettre honnête et tu passes à autre chose",
-            "next_scene": "FinLoveOnly",
-            "effects": {
-              "relationshipPoints": 1,
-              "burnout": -1
-            }
-          }
-        ]
-      },
-      {
-        "id": "15",
-        "title": "RevancheStylée",
-        "description": "Tu postes : *\"On m'a mise de côté. Me voilà de retour.\"*  \nLéa commente un emoji flamme. Alex like en silence.\n\nLe magazine qui t'avait recalée te contacte : \"On a peut-être été trop rapides.\"\n\n[[Tu refuses, tu n'as plus besoin d'eux->FinCarriereOnly]]  \n[[Tu acceptes et proposes Alex comme photographe->FinCarriereLove]]",
-        "image": "scene15.jpg",
-        "is_ending": false,
-        "choices": [
-          {
-            "text": "Tu refuses, tu n'as plus besoin d'eux",
-            "next_scene": "FinCarriereOnly",
-            "effects": {
-              "careerPoints": 1,
-              "burnout": -1
-            }
-          },
-          {
-            "text": "Tu acceptes et proposes Alex comme photographe",
-            "next_scene": "FinCarriereLove",
-            "effects": {
-              "careerPoints": 1,
-              "relationshipPoints": 1
-            },
-            "conditions": {
-              "hasSeenAlex": true,
-              "relationshipPoints": { "gte": 2 }
-            }
-          }
-        ]
-      },
-      {
-        "id": "16",
-        "title": "FinCarriereLove",
-        "description": "🌟 Tu gagnes ta place, ton respect, et ton équilibre.  \nAlex devient ton partenaire en création comme en amour.  \nVous montez un studio ensemble à Lisbonne.\n\n🏁 *Fin débloquée : Boss Lady & Love Story ✨*",
-        "image": "scene16.jpg",
-        "is_ending": true,
-        "conditions": {
-          "careerPoints": { "gte": 3 },
-          "relationshipPoints": { "gte": 2 }
         },
-        "choices": []
-      },
-      {
-        "id": "17",
-        "title": "FinLoveOnly",
-        "description": "💞 Tu n'as pas gagné tous les concours.  \nMais tu as gagné en amour, en paix, en clarté.  \nLuna & Alex : un duo doux, imparfait, sincère.\n\n🏁 *Fin débloquée : Amour avant le succès 💖*",
-        "image": "scene17.jpg",
-        "is_ending": true,
-        "conditions": {
-          "relationshipPoints": { "gte": 2 }
+        {
+          "text": "Tu décides de poster une série de looks pour buzzer malgré tout",
+          "next_scene": "ViralBoost",
+          "effects": {
+            "careerPoints": 1,
+            "burnout": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "BrunchAlex",
+      "description": "Alex est là, sourire doux, regard fuyant.  \n*\"J'ai eu peur. Mais je veux avancer. Et toi, dans ma vie.\"*\n\nVous parlez, riez, touchez des sujets sensibles… Et il te propose un voyage de repérages au Portugal pour un projet commun ✈️  \nMais ce week-end, tu dois livrer une collab avec une marque suisse.\n\n[[Tu choisis l'amour et pars en escapade->VoyageAlex]]  \n[[Tu restes focus, même si ça fait mal->FocusProjet]]",
+      "image": "scene3.jpg",
+      "is_ending": false,
+      "choices": [
+        {
+          "text": "Tu choisis l'amour et pars en escapade",
+          "next_scene": "VoyageAlex",
+          "effects": {
+            "relationshipPoints": 2,
+            "careerPoints": -1
+          }
         },
-        "choices": []
-      },
-      {
-        "id": "18",
-        "title": "FinCarriereOnly",
-        "description": "👑 Tu as percé sans détour, sans dépendance.  \nTu voyages, tu crées, tu inspires. Tu es ta propre victoire.\n\n🏁 *Fin débloquée : Indépendante & Inarrêtable 💼*",
-        "image": "scene18.jpg",
-        "is_ending": true,
-        "conditions": {
-          "careerPoints": { "gte": 3 }
+        {
+          "text": "Tu restes focus, même si ça fait mal",
+          "next_scene": "FocusProjet",
+          "effects": {
+            "careerPoints": 1,
+            "relationshipPoints": -1
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "RienFaire",
+      "description": "Tu regardes des vidéos de chiens déguisés en sushi pendant 2h.  \nPuis une story d'Alex apparaît : lui et Léa à un vernissage.  \nTon cœur se serre.\n\n[[Laisser libre cours à ton imagination->CarnetReveil]]  \n[[Tu scrolles jusqu'à t'endormir… et rien ne change->FinFlop]]",
+      "image": "scene4.jpg",
+      "is_ending": false,
+      "choices": [
+        {
+          "text": "Laisser libre cours à ton imagination",
+          "next_scene": "CarnetReveil",
+          "effects": {
+            "inspired": true
+          }
         },
-        "choices": []
+        {
+          "text": "Tu scrolles jusqu'à t'endormir… et rien ne change",
+          "next_scene": "FinFlop",
+          "effects": {
+            "burnout": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "CarnetReveil",
+      "description": "Tu ouvres un carnet et gribouilles un motif que tu n'avais jamais osé dessiner…  \nC'est brut, imparfait, mais vivant.  \nEt là, une idée folle : transformer ce motif en pièce unique.\n\n[[Créer une robe expérimentale à partir du dessin->RobeExperimentale]]  \n[[Le scanner et en faire un motif imprimé->ImpressionMotif]]  \n[[Le publier anonymement sur un compte Insta secondaire->InstaSecret]]  \n[[Tout déchirer et recommencer un nouveau carnet->CarnetNeuf]]",
+      "image": "scene5.jpg",
+      "is_ending": false,
+      "choices": [
+        {
+          "text": "Créer une robe expérimentale à partir du dessin",
+          "next_scene": "RobeExperimentale",
+          "effects": {
+            "careerPoints": 1,
+            "burnout": 1
+          }
+        },
+        {
+          "text": "Le scanner et en faire un motif imprimé",
+          "next_scene": "ImpressionMotif",
+          "effects": {
+            "careerPoints": 1
+          }
+        },
+        {
+          "text": "Le publier anonymement sur un compte Insta secondaire",
+          "next_scene": "InstaSecret",
+          "effects": {
+            "careerPoints": 1
+          }
+        },
+        {
+          "text": "Tout déchirer et recommencer un nouveau carnet",
+          "next_scene": "CarnetNeuf",
+          "effects": {
+            "burnout": -1
+          }
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "RobeExperimentale",
+      "description": "Tu passes la nuit à coudre. Le résultat est déroutant… mais puissant.  \nTu oses le poster. Une styliste d'avant-garde like.  \nLe lendemain, un journaliste de blog mode te contacte.\n\n[[Tu acceptes une interview pour expliquer ton processus->CollectionComeback]]",
+      "image": "scene6.jpg",
+      "is_ending": false,
+      "choices": [
+        {
+          "text": "Tu acceptes une interview pour expliquer ton processus",
+          "next_scene": "CollectionComeback",
+          "effects": {
+            "careerPoints": 1,
+            "vogueAccepted": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "title": "ImpressionMotif",
+      "description": "Tu crées une série de tote bags imprimés et les envoies à quelques contacts.  \nUne boutique à Zürich t'écrit : \"Vous prenez les commandes pro ?\"  \nTu n'avais rien prévu, mais tu réponds : \"Oui.\"\n\n[[Tu développes une micro-collection autour du motif->CollectionComeback]]",
+      "image": "scene7.jpg",
+      "choices": [
+        {
+          "text": "Tu développes une micro-collection autour du motif",
+          "next_scene": "CollectionComeback",
+          "effects": {
+            "careerPoints": 2,
+            "burnout": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "title": "InstaSecret",
+      "description": "Tu postes anonymement. En 24h, le post est partagé 200 fois.  \nUn message arrive : *\"C'est toi Luna ? On adore ce que tu fais ici.\"*\n\n[[Tu replies honnêtement et acceptes de revendiquer ton style->CollectionComeback]]",
+      "image": "scene8.jpg",
+      "choices": [
+        {
+          "text": "Tu replies honnêtement et acceptes de revendiquer ton style",
+          "next_scene": "CollectionComeback",
+          "effects": {
+            "careerPoints": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "title": "CarnetNeuf",
+      "description": "Tu déchires les pages et recommences.  \nCette fois, tu laisses parler la colère, la nostalgie, l'espoir.  \nUne nouvelle série de croquis voit le jour.\n\n[[Tu organises une mini-expo chez toi pour montrer les dessins->CollectionComeback]]",
+      "image": "scene9.jpg",
+      "is_ending": false,
+      "choices": [
+        {
+          "text": "Tu organises une mini-expo chez toi pour montrer les dessins",
+          "next_scene": "CollectionComeback",
+          "effects": {
+            "careerPoints": 1,
+            "burnout": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "title": "MomentAlex",
+      "description": "Le dîner est simple, réconfortant. Vous parlez peu, mais les regards suffisent.  \nAlex t'embrasse. *\"Tu me manques, Luna.\"*\n\n[[Tu profites de ton bonheur et choisis de tout reconstruire autrement->FinLoveOnly]]  \n[[Tu te lances à fond pour reprendre ta place, le cœur plein->RevancheStylée]]",
+      "image": "scene10.jpg",
+      "choices": [
+        {
+          "text": "Tu profites de ton bonheur et choisis de tout reconstruire autrement",
+          "next_scene": "FinLoveOnly",
+          "effects": {
+            "relationshipPoints": 2
+          }
+        },
+        {
+          "text": "Tu te lances à fond pour reprendre ta place, le cœur plein",
+          "next_scene": "RevancheStylée",
+          "effects": {
+            "relationshipPoints": 1,
+            "careerPoints": 1,
+            "burnout": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "title": "ViralBoost",
+      "description": "Tu crées une mini-campagne maison avec ton trépied et ta vibe de queen.  \nLes likes pleuvent. Une marque parisienne te DM : \"On veut un call.\"  \nEt Alex te laisse un vocal : *\"T'as pas besoin de moi. Mais j'aimerais en faire partie.\"*\n\n[[Tu lui réponds : tu veux les deux->FinCarriereLove]]  \n[[Tu restes centrée sur ton glow-up solo->FinCarriereOnly]]",
+      "image": "scene11.jpg",
+      "is_ending": false,
+      "choices": [
+        {
+          "text": "Tu lui réponds : tu veux les deux",
+          "next_scene": "FinCarriereLove",
+          "effects": {
+            "careerPoints": 1,
+            "relationshipPoints": 1
+          }
+        },
+        {
+          "text": "Tu restes centrée sur ton glow-up solo",
+          "next_scene": "FinCarriereOnly",
+          "effects": {
+            "careerPoints": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "title": "VoyageAlex",
+      "description": "Les paysages sont beaux. Alex est doux. Vous créez une série de photos sublimes.  \nMais à ton retour, ta marque a été copiée par une influenceuse…  \nTu n'as pas bougé pendant une semaine, et ça t'a coûté.\n\n[[Tu assumes ton choix amoureux, coûte que coûte->FinLoveOnly]]  \n[[Tu te bats pour récupérer ta crédibilité en ligne->RevancheStylée]]",
+      "image": "scene12.jpg",
+      "is_ending": false,
+      "choices": [
+        {
+          "text": "Tu assumes ton choix amoureux, coûte que coûte",
+          "next_scene": "FinLoveOnly",
+          "effects": {
+            "relationshipPoints": 1,
+            "careerPoints": -1
+          }
+        },
+        {
+          "text": "Tu te bats pour récupérer ta crédibilité en ligne",
+          "next_scene": "RevancheStylée",
+          "effects": {
+            "careerPoints": 1,
+            "burnout": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "title": "FocusProjet",
+      "description": "Tu livres ton projet en temps et en heure. La marque adore.  \nMais Alex s'éloigne. Plus de messages.\n\n[[Tu relances Alex avec vulnérabilité->FinCarriereLove]]  \n[[Tu lâches prise et acceptes le glow-up solo->FinCarriereOnly]]",
+      "image": "scene13.jpg",
+      "is_ending": false,
+      "choices": [
+        {
+          "text": "Tu relances Alex avec vulnérabilité",
+          "next_scene": "FinCarriereLove",
+          "effects": {
+            "relationshipPoints": 1
+          },
+          "conditions": {
+            "relationshipPoints": { "gte": 1 }
+          }
+        },
+        {
+          "text": "Tu lâches prise et acceptes le glow-up solo",
+          "next_scene": "FinCarriereOnly",
+          "effects": {
+            "careerPoints": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "title": "CollectionComeback",
+      "description": "Tu travailles jour et nuit.  \nTon design casse les codes : dentelle brute, typo punk, touches dorées.  \nUn blog mode t'appelle. Une galerie veut l'exposer.  \nMais... Alex est avec Léa maintenant.\n\n[[Tu t'effondres mais transformes ta douleur en art->FinCarriereOnly]]  \n[[Tu lui écris une lettre honnête et tu passes à autre chose->FinLoveOnly]]",
+      "image": "scene14.jpg",
+      "is_ending": false,
+      "choices": [
+        {
+          "text": "Tu t'effondres mais transformes ta douleur en art",
+          "next_scene": "FinCarriereOnly",
+          "effects": {
+            "careerPoints": 2,
+            "burnout": 1
+          }
+        },
+        {
+          "text": "Tu lui écris une lettre honnête et tu passes à autre chose",
+          "next_scene": "FinLoveOnly",
+          "effects": {
+            "relationshipPoints": 1,
+            "burnout": -1
+          }
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "title": "RevancheStylée",
+      "description": "Tu postes : *\"On m'a mise de côté. Me voilà de retour.\"*  \nLéa commente un emoji flamme. Alex like en silence.\n\nLe magazine qui t'avait recalée te contacte : \"On a peut-être été trop rapides.\"\n\n[[Tu refuses, tu n'as plus besoin d'eux->FinCarriereOnly]]  \n[[Tu acceptes et proposes Alex comme photographe->FinCarriereLove]]",
+      "image": "scene15.jpg",
+      "is_ending": false,
+      "choices": [
+        {
+          "text": "Tu refuses, tu n'as plus besoin d'eux",
+          "next_scene": "FinCarriereOnly",
+          "effects": {
+            "careerPoints": 1,
+            "burnout": -1
+          }
+        },
+        {
+          "text": "Tu acceptes et proposes Alex comme photographe",
+          "next_scene": "FinCarriereLove",
+          "effects": {
+            "careerPoints": 1,
+            "relationshipPoints": 1
+          },
+          "conditions": {
+            "hasSeenAlex": true,
+            "relationshipPoints": { "gte": 2 }
+          }
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "title": "FinCarriereLove",
+      "description": "🌟 Tu gagnes ta place, ton respect, et ton équilibre.  \nAlex devient ton partenaire en création comme en amour.  \nVous montez un studio ensemble à Lisbonne.\n\n🏁 *Fin débloquée : Boss Lady & Love Story ✨*",
+      "image": "scene16.jpg",
+      "is_ending": true,
+      "conditions": {
+        "careerPoints": { "gte": 3 },
+        "relationshipPoints": { "gte": 2 }
       },
-      {
-        "id": "19",
-        "title": "FinFlop",
-        "description": "🕳️ Tu n'as rien posté. Rien lancé. Rien tenté.  \nMais au creux du silence, un feu s'est rallumé.  \nTu n'es pas finie. Juste en pause.\n\n🏁 *Fin débloquée : Pas aujourd'hui, mais bientôt 🌘*",
-        "image": "scene19.jpg",
-        "is_ending": true,
-        "choices": []
-      }
-    ]
-  }
+      "choices": []
+    },
+    {
+      "id": "17",
+      "title": "FinLoveOnly",
+      "description": "💞 Tu n'as pas gagné tous les concours.  \nMais tu as gagné en amour, en paix, en clarté.  \nLuna & Alex : un duo doux, imparfait, sincère.\n\n🏁 *Fin débloquée : Amour avant le succès 💖*",
+      "image": "scene17.jpg",
+      "is_ending": true,
+      "conditions": {
+        "relationshipPoints": { "gte": 2 }
+      },
+      "choices": []
+    },
+    {
+      "id": "18",
+      "title": "FinCarriereOnly",
+      "description": "👑 Tu as percé sans détour, sans dépendance.  \nTu voyages, tu crées, tu inspires. Tu es ta propre victoire.\n\n🏁 *Fin débloquée : Indépendante & Inarrêtable 💼*",
+      "image": "scene18.jpg",
+      "is_ending": true,
+      "conditions": {
+        "careerPoints": { "gte": 3 }
+      },
+      "choices": []
+    },
+    {
+      "id": "19",
+      "title": "FinFlop",
+      "description": "🕳️ Tu n'as rien posté. Rien lancé. Rien tenté.  \nMais au creux du silence, un feu s'est rallumé.  \nTu n'es pas finie. Juste en pause.\n\n🏁 *Fin débloquée : Pas aujourd'hui, mais bientôt 🌘*",
+      "image": "scene19.jpg",
+      "is_ending": true,
+      "choices": []
+    }
+  ]
+}

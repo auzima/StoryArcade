@@ -6,9 +6,12 @@ use App\Models\SaveGame;
 use App\Http\Requests\SaveGameRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class SaveGameController extends Controller
 {
+    use AuthorizesRequests;
+
     /**
      * Affiche la liste des sauvegardes de l'utilisateur.
      */
