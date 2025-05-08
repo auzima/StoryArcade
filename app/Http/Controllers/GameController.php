@@ -3,53 +3,73 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
-use App\Http\Requests\GameRequest;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use App\Http\Requests\StoreGameRequest;
+use App\Http\Requests\UpdateGameRequest;
 
 class GameController extends Controller
 {
     /**
-     * Affiche la liste des jeux.
+     * Affiche tous les jeux (liste)
      */
-    public function index(): JsonResponse
+    public function index()
     {
-        $games = Game::with(['user', 'startScene'])->get();
-        return response()->json($games);
+        $games = Game::all();
+        return view('games.index', compact('games'));
     }
 
     /**
-     * Enregistre un nouveau jeu.
+     * Affiche le formulaire de création
      */
-    public function store(GameRequest $request): JsonResponse
+    public function create()
     {
-        $game = Game::create($request->validated());
-        return response()->json($game, 201);
+        return view('games.create');
     }
 
     /**
-     * Affiche un jeu spécifique.
+     * Enregistre un nouveau jeu
      */
-    public function show(Game $game): JsonResponse
+    public function store(StoreGameRequest $request)
+{
+    Game::create([
+        ...$request->validated(),
+        'author' => auth()->check() ? auth()->user()->name : 'Invité',
+    ]);
+
+    return redirect()->route('games.index')->with('success', 'Jeu créé avec succès !');
+}
+
+    /**
+     * Affiche un jeu en particulier
+     */
+    public function show(Game $game)
     {
-        $game->load(['user', 'startScene', 'scenes']);
-        return response()->json($game);
+        return view('games.show', compact('game'));
     }
 
     /**
-     * Met à jour un jeu spécifique.
+     * Affiche le formulaire de modification
      */
-    public function update(GameRequest $request, Game $game): JsonResponse
+    public function edit(Game $game)
+    {
+        return view('games.edit', compact('game'));
+    }
+
+    /**
+     * Met à jour les données d’un jeu
+     */
+    public function update(UpdateGameRequest $request, Game $game)
     {
         $game->update($request->validated());
-        return response()->json($game);
+        return redirect()->route('games.index')->with('success', 'Jeu mis à jour avec succès !');
     }
 
     /**
-     * Supprime un jeu spécifique.
+     * Supprime un jeu
      */
-    public function destroy(Game $game): JsonResponse
+    public function destroy(Game $game)
     {
         $game->delete();
-        return response()->json(null, 204);
+        return redirect()->route('games.index')->with('success', 'Jeu supprimé.');
     }
 }

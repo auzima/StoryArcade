@@ -22,7 +22,9 @@ class StoreGameRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:games,slug',
+            'version' => 'required|string|max:50',
             'description' => 'nullable|string',
+            'initial_state' => 'nullable|json',
         ];
     }
 }

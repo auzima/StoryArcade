@@ -9,3 +9,7 @@ Route::get('/', function () {
 // Instead of using Sanctum (or something similar) for API authentication,
 // we are using the built-in Laravel session authentication system.
 require_once __DIR__ . '/api.php';
+
+use App\Http\Controllers\GameController;
+
+Route::resource('games', GameController::class);
