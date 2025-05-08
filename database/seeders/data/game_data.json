@@ -1,0 +1,42 @@
+{
+    "game": {
+        "title": "Sauvage Lune",
+        "description": "Une aventure mystérieuse dans un monde fantastique",
+        "scenes": [
+            {
+                "id": 1,
+                "title": "Le Début",
+                "description": "Vous vous réveillez dans une forêt mystérieuse...",
+                "choices": [
+                    {
+                        "id": 1,
+                        "text": "Explorer les environs",
+                        "next_scene_id": 2
+                    },
+                    {
+                        "id": 2,
+                        "text": "Rester sur place",
+                        "next_scene_id": 3
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "title": "L'Exploration",
+                "description": "Vous découvrez une clairière...",
+                "choices": [
+                    {
+                        "id": 3,
+                        "text": "Approcher la clairière",
+                        "next_scene_id": 4
+                    },
+                    {
+                        "id": 4,
+                        "text": "Retourner en arrière",
+                        "next_scene_id": 1
+                    }
+                ]
+            }
+        ]
+    }
+} 
