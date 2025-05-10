@@ -38,4 +38,6 @@ class Scene extends Model
     {
         return $this->hasMany(Choice::class);
     }
+
+    
 }

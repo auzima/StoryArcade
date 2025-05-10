@@ -21,6 +21,7 @@ class Game extends Model
     protected $casts = [
         'initial_state' => 'array',
     ];
+  
 
     public function scenes(): HasMany
     {

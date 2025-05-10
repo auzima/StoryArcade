@@ -30,23 +30,23 @@ class GameController extends Controller
      * Enregistre un nouveau jeu
      */
     public function store(StoreGameRequest $request)
-{
-    Game::create([
-        ...$request->validated(),
-        'author' => auth()->check() ? auth()->user()->name : 'Invité',
-    ]);
-
-    return redirect()->route('games.index')->with('success', 'Jeu créé avec succès !');
-}
+    {
+        Game::create([
+            ...$request->validated(),
+            'author' => 'Invité',
+        ]);
+    
+        return redirect()->route('games.index')->with('success', 'Jeu créé avec succès !');
+    }
 
     /**
      * Affiche un jeu en particulier
      */
     public function show(Game $game)
     {
+        $game->load('scenes');
         return view('games.show', compact('game'));
     }
-
     /**
      * Affiche le formulaire de modification
      */

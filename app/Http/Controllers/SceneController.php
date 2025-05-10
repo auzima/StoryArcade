@@ -2,54 +2,63 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreSceneRequest;
+use App\Http\Requests\UpdateSceneRequest;
 use App\Models\Scene;
-use App\Http\Requests\SceneRequest;
-use Illuminate\Http\JsonResponse;
+use App\Models\Game;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class SceneController extends Controller
 {
-    /**
-     * Affiche la liste des scènes.
-     */
-    public function index(): JsonResponse
+    public function index(): View
     {
-        $scenes = Scene::with(['game', 'choices'])->get();
-        return response()->json($scenes);
+        $scenes = Scene::with('game')->get();
+        return view('scenes.index', compact('scenes'));
     }
 
-    /**
-     * Enregistre une nouvelle scène.
-     */
-    public function store(SceneRequest $request): JsonResponse
+    public function create()
     {
-        $scene = Scene::create($request->validated());
-        return response()->json($scene, 201);
+        $games = Game::all();
+        $selectedGameId = request()->query('game_id'); // récupère l'ID pré-rempli
+        return view('scenes.create', compact('games', 'selectedGameId'));
     }
 
-    /**
-     * Affiche une scène spécifique.
-     */
-    public function show(Scene $scene): JsonResponse
+    public function store(StoreSceneRequest $request, Game $game): RedirectResponse
     {
-        $scene->load(['game', 'choices']);
-        return response()->json($scene);
+        $data = $request->validated();
+        $data['game_id'] = $game->id;
+    
+        // Simule un admin si `?admin=1` dans l’URL
+        $data['author'] = 'Invité';
+    
+        Scene::create($data);
+    
+        return redirect()->route('games.scenes.index', $game)->with('success', 'Scène créée !');
     }
 
-    /**
-     * Met à jour une scène spécifique.
-     */
-    public function update(SceneRequest $request, Scene $scene): JsonResponse
+    public function show(Scene $scene)
+    {
+        $scene->load('game'); // charge aussi les infos du jeu
+        return view('games.scenes.show', compact('scene'));
+    }
+
+
+    public function edit(Scene $scene): View
+{
+    $games = Game::all();
+    return view('games.scenes.edit', compact('scene', 'games'));
+}
+
+    public function update(UpdateSceneRequest $request, Scene $scene): RedirectResponse
     {
         $scene->update($request->validated());
-        return response()->json($scene);
+        return redirect()->route('scenes.index')->with('success', 'Scène modifiée !');
     }
 
-    /**
-     * Supprime une scène spécifique.
-     */
-    public function destroy(Scene $scene): JsonResponse
+    public function destroy(Scene $scene): RedirectResponse
     {
         $scene->delete();
-        return response()->json(null, 204);
+        return redirect()->route('scenes.index')->with('success', 'Scène supprimée.');
     }
 }
