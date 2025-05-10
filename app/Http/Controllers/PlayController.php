@@ -36,3 +36,4 @@ class PlayController extends Controller
         return view('play.scene', compact('scene'));
     }
 }
+

@@ -24,17 +24,26 @@ class SceneController extends Controller
         return view('scenes.create', compact('games', 'selectedGameId'));
     }
 
-    public function store(StoreSceneRequest $request, Game $game): RedirectResponse
+    public function store(StoreSceneRequest $request): RedirectResponse
     {
         $data = $request->validated();
-        $data['game_id'] = $game->id;
     
-        // Simule un admin si `?admin=1` dans l’URL
+        // Si un game_id est passé en query (ex: ?game_id=1), on l'ajoute
+        if (request()->has('game_id')) {
+            $data['game_id'] = request()->get('game_id');
+        }
+    
+        // Sauvegarde l'image dans le dossier "public/scenes"
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('scenes', 'public');
+        }
+    
+        // Simule un auteur
         $data['author'] = 'Invité';
     
         Scene::create($data);
     
-        return redirect()->route('games.scenes.index', $game)->with('success', 'Scène créée !');
+        return redirect()->route('scenes.index')->with('success', 'Scène créée avec image !');
     }
 
     public function show(Scene $scene)
@@ -62,3 +71,4 @@ class SceneController extends Controller
         return redirect()->route('scenes.index')->with('success', 'Scène supprimée.');
     }
 }
+

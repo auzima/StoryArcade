@@ -18,7 +18,7 @@ class UpdateSceneRequest extends FormRequest
             'id' => 'required|string|max:255', // même identifiant, pas modifié
             'title' => 'required|string|max:255',
             'content' => 'required|string',
-            'image' => 'nullable|string|max:255',
+            'image' => 'nullable|image|max:5000',
             'is_ending' => 'required|boolean',
         ];
     }

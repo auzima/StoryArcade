@@ -32,4 +32,10 @@ class Game extends Model
     {
         return $this->hasMany(SaveGame::class);
     }
+
+    // App\Models\Game.php
+public function firstScene()
+{
+    return $this->scenes()->orderBy('id')->first();
+}
 }

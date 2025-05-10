@@ -18,7 +18,7 @@ class StoreSceneRequest extends FormRequest
             'id' => 'required|string|max:255|unique:scenes,id',
             'title' => 'required|string|max:255',
             'content' => 'required|string',
-            'image' => 'nullable|string|max:255',
+            'image' => 'nullable|image|max:5000',
             'is_ending' => 'required|boolean',
         ];
     }

@@ -15,7 +15,7 @@
     @endif
 
     {{-- Formulaire de création d’un jeu --}}
-    <form action="{{ route('games.store') }}" method="POST">
+    <form action="{{ route('games.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div>
@@ -38,8 +38,12 @@
             <input type="text" name="version" id="version" value="{{ old('version', '1.0') }}" required>
         </div>
 
-        {{-- Tu peux ajouter un champ JSON d’état initial plus tard si besoin --}}
+        <div>
+            <label for="cover_image">Image de couverture :</label><br>
+            <input type="file" name="cover_image" id="cover_image" accept="image/*">
+        </div>
 
+        <br>
         <button type="submit">Créer</button>
     </form>
 @endsection

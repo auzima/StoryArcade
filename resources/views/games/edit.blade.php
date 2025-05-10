@@ -13,7 +13,8 @@
         </div>
     @endif
 
-    <form action="{{ route('games.update', $game) }}" method="POST">
+    {{-- Formulaire unique avec encodage pour fichier --}}
+    <form action="{{ route('games.update', $game) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -29,8 +30,20 @@
         <label for="description">Description :</label><br>
         <textarea name="description" id="description">{{ old('description', $game->description) }}</textarea><br>
 
+        {{-- Champ pour image de couverture --}}
+        <label for="cover_image">Image de couverture :</label><br>
+        <input type="file" name="cover_image" id="cover_image" accept="image/*"><br>
+
+        {{-- Affichage actuel de l’image si elle existe --}}
+        @if ($game->cover_image)
+            <p>Image actuelle :</p>
+            <img src="{{ asset('storage/' . $game->cover_image) }}" alt="Image de couverture" style="max-width: 300px;">
+        @endif
+
+        <br><br>
         <button type="submit">Enregistrer les modifications</button>
     </form>
 
+    <br>
     <a href="{{ route('games.index') }}">← Retour à la liste</a>
 @endsection
