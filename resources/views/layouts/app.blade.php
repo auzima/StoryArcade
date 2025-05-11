@@ -16,23 +16,31 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
+<body class="font-sans antialiased bg-gray-100 dark:bg-black text-gray-900 dark:text-white">
+    <div class="min-h-screen">
+
+        <!-- Composant Vue monté (toggle thème) -->
+        <div id="theme-toggle" class="absolute top-4 right-4 z-50">
+            <theme-toggle></theme-toggle>
+        </div>
+
+        <!-- Navigation -->
         @include('layouts.navigation')
 
         <!-- Page Heading -->
         @isset($header)
-        <header class="bg-white shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                {{ $header }}
-            </div>
-        </header>
+            <header class="bg-white shadow dark:bg-gray-900">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    {{ $header }}
+                </div>
+            </header>
         @endisset
 
         <!-- Page Content -->
         <main>
             @yield('content')
         </main>
+        
     </div>
 </body>
 

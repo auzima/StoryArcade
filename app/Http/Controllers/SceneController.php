@@ -11,12 +11,12 @@ use Illuminate\View\View;
 
 class SceneController extends Controller
 {
-    public function index(): View
-    {
-        $scenes = Scene::with('game')->get();
-        return view('scenes.index', compact('scenes'));
-    }
 
+    public function index(Game $game)
+    {
+        $scenes = $game->scenes()->get();
+        return view('games.scenes.index', compact('game', 'scenes'));
+    }
     public function create()
     {
         $games = Game::all();
@@ -27,22 +27,22 @@ class SceneController extends Controller
     public function store(StoreSceneRequest $request): RedirectResponse
     {
         $data = $request->validated();
-    
+
         // Si un game_id est passé en query (ex: ?game_id=1), on l'ajoute
         if (request()->has('game_id')) {
             $data['game_id'] = request()->get('game_id');
         }
-    
+
         // Sauvegarde l'image dans le dossier "public/scenes"
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('scenes', 'public');
         }
-    
+
         // Simule un auteur
         $data['author'] = 'Invité';
-    
+
         Scene::create($data);
-    
+
         return redirect()->route('scenes.index')->with('success', 'Scène créée avec image !');
     }
 
@@ -54,10 +54,10 @@ class SceneController extends Controller
 
 
     public function edit(Scene $scene): View
-{
-    $games = Game::all();
-    return view('games.scenes.edit', compact('scene', 'games'));
-}
+    {
+        $games = Game::all();
+        return view('games.scenes.edit', compact('scene', 'games'));
+    }
 
     public function update(UpdateSceneRequest $request, Scene $scene): RedirectResponse
     {
@@ -71,4 +71,3 @@ class SceneController extends Controller
         return redirect()->route('scenes.index')->with('success', 'Scène supprimée.');
     }
 }
-

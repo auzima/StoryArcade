@@ -1,12 +1,14 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
 
-/** @type {import('tailwindcss').Config} */
 export default {
+    darkMode: 'class', // active le mode sombre via la classe "dark"
+
     content: [
-        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
-        './storage/framework/views/*.php',
-        './resources/views/**/*.blade.php',
+        './resources/**/*.blade.php',
+        './resources/**/*.vue',
+        './resources/**/*.js',
+        './resources/views/**/*.blade.php', // juste au cas où
     ],
 
     theme: {
@@ -14,6 +16,11 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                // Optionnel : ajoute des couleurs pastel personnalisées
+                lilas: '#d8b4fe',
+                rose: '#f9a8d4',
+            }
         },
     },
 

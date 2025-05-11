@@ -1,42 +1,48 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 class="text-2xl font-bold mb-4">{{ $scene->title }}</h1>
+<div class="flex flex-col items-center justify-center h-screen px-4 text-center space-y-4 bg-black text-white overflow-hidden">
 
-@if ($scene->image)
-<img src="{{ asset('storage/' . $scene->image) }}"
-    alt="Image de la scène"
-    class="rounded shadow mb-6 w-full max-w-md mx-auto">
-@endif
+    {{-- Image agrandie (max 80% hauteur écran) --}}
+    @if ($scene->image)
+    <div class="w-full max-w-xl">
+        <img src="{{ asset('storage/' . $scene->image) }}"
+            alt="Image de la scène"
+            class="w-full h-auto max-h-[80vh] object-contain rounded shadow mx-auto">
+    </div>
+    @endif
 
-<p class="mb-4">{{ $scene->content }}</p>
+    {{-- Description dans un bloc limité --}}
+    <div class="max-w-2xl text-base leading-snug overflow-hidden px-4">
+        <div class="max-h-[20vh] overflow-y-auto">
+            {!! nl2br(e($scene->description)) !!}
+        </div>
+    </div>
 
-@if ($scene->choices->isNotEmpty())
-<ul class="space-y-2">
-    @foreach($scene->choices as $choice)
-    <li>
-        <a href="{{ route('play.scene', $choice->next_scene) }}"
-            class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-            👉 {{ $choice->text }}
-        </a>
-    </li>
-    @endforeach
-</ul>
-@else
-<div class="mt-10 text-center">
-    <p class="text-xl font-semibold text-gray-700 mb-2">🎉 Bravo, vous avez terminé l’histoire !</p>
+    {{-- Choix dans un bloc limité --}}
+    <div class="max-w-xl w-full space-y-3">
+        @if ($scene->choices->isNotEmpty())
+            @foreach($scene->choices as $choice)
+                <a href="{{ route('play.scene', $choice->next_scene) }}"
+                    class="block bg-pink-400 hover:bg-purple-400 text-white px-4 py-2 rounded-lg transition font-semibold shadow-md">
+                    {{ $choice->text }}
+                </a>
+            @endforeach
+        @else
+            <p class="text-gray-300">🎉 Fin de l’histoire</p>
+            <a href="{{ route('play.index') }}"
+                class="inline-block bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition">
+                🔄 Retour à la liste des jeux
+            </a>
+        @endif
+    </div>
 
-    {{-- Résumé / message facultatif --}}
-    <p class="text-gray-500 text-sm mb-4">
-        Merci d’avoir joué à <strong>{{ $scene->game->title ?? 'ce jeu' }}</strong>. <br>
-        Chaque aventure est différente selon vos choix !
-    </p>
-
-    {{-- Bouton retour à la liste --}}
-    <a href="{{ route('play.index') }}"
-        class="inline-block mt-4 bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">
-        🔄 Explorer d’autres jeux
-    </a>
+    {{-- Composants Vue (optionnel si utilisés) --}}
+    {{-- 
+    <div id="vue-app" class="max-w-xl w-full space-y-3">
+        <theme-toggle></theme-toggle>
+        <scene-choices :choices='@json($scene->choices)' route-base="{{ url('/play/scene/') }}/" />
+    </div> 
+    --}}
 </div>
-@endif
 @endsection

@@ -14,7 +14,8 @@ class GameController extends Controller
      */
     public function index()
     {
-        $games = Game::all();
+        // Charge les scènes pour chaque jeu afin d'afficher les images de couverture
+        $games = Game::with('scenes')->get();
         return view('games.index', compact('games'));
     }
 
@@ -36,7 +37,8 @@ class GameController extends Controller
             'author' => 'Invité',
         ]);
     
-        return redirect()->route('games.index')->with('success', 'Jeu créé avec succès !');
+        // Redirection vers /dashboard au lieu de /games
+        return redirect()->route('dashboard')->with('success', 'Jeu créé avec succès !');
     }
 
     /**
@@ -68,8 +70,9 @@ class GameController extends Controller
      * Supprime un jeu
      */
     public function destroy(Game $game)
-    {
-        $game->delete();
-        return redirect()->route('games.index')->with('success', 'Jeu supprimé.');
-    }
+{
+    $game->delete();
+
+    return redirect()->route('dashboard')->with('success', 'Jeu supprimé.');
+}
 }
