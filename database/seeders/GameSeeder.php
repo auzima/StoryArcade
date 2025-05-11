@@ -27,7 +27,7 @@ class GameSeeder extends Seeder
 
         foreach ($jsonData['scenes'] as $sceneData) {
             $scene = Scene::create([
-                'id' => $sceneData['title'], // On utilise le titre comme identifiant
+                'id' => $sceneData['id'],
                 'game_id' => $game->id,
                 'title' => $sceneData['title'],
                 'description' => $sceneData['description'],
@@ -40,7 +40,7 @@ class GameSeeder extends Seeder
         }
 
         foreach ($jsonData['scenes'] as $sceneData) {
-            $originSceneId = $sceneData['title'];
+            $originSceneId = $sceneData['id'];
             foreach ($sceneData['choices'] ?? [] as $choiceData) {
                 $targetId = $choiceData['next_scene'];
 

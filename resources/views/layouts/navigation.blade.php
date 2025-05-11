@@ -5,7 +5,7 @@
             <!-- Logo -->
             <div class="flex-shrink-0 flex items-center">
                 <a href="{{ url('/') }}">
-                    <h1 class="text-xl font-bold text-gray-800 dark:text-white">🌙 Sauvage & Lune</h1>
+                    <h1 class="text-xl font-bold text-gray-800 dark:text-white">StoryArcade</h1>
                 </a>
             </div>
 

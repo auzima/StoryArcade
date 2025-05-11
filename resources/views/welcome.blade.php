@@ -20,9 +20,11 @@
             🎮 Découvrir les jeux
         </a>
         @guest
-        <a href="{{ route('login') }}" class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 font-semibold">
-            🔐 Administration
-        </a>
+        <form action="{{ route('login') }}" method="GET" class="inline">
+            <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 font-semibold">
+                🔐 Administration
+            </button>
+        </form>
         @endguest
     </div>
 
@@ -32,4 +34,19 @@
     </div>
 
 </div>
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const adminButton = document.querySelector('button[onclick*="login"]');
+        if (adminButton) {
+            adminButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = '/login';
+            });
+        }
+    });
+</script>
+@endpush
+
 @endsection
