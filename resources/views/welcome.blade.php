@@ -1,7 +1,4 @@
 @extends('layouts.app')
-@guest
-    <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">🔐 Se connecter (Admin)</a>
-@endguest
 
 @section('content')
 <div class="flex flex-col justify-center items-center min-h-screen text-center px-4 space-y-6">
@@ -11,7 +8,7 @@
     </h1>
 
     <p class="max-w-xl text-lg text-gray-700 dark:text-gray-200">
-        Découvrez une sélection de jeux narratifs où chaque décision façonne le cours de l’histoire.
+        Découvrez une sélection de jeux narratifs où chaque décision façonne le cours de l'histoire.
     </p>
 
     <p class="max-w-xl text-base text-gray-600 dark:text-gray-400">
@@ -22,6 +19,11 @@
         <a href="{{ route('play.index') }}" class="bg-green-600 text-white px-6 py-3 rounded hover:bg-green-700 font-semibold">
             🎮 Découvrir les jeux
         </a>
+        @guest
+        <a href="{{ route('login') }}" class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 font-semibold">
+            🔐 Administration
+        </a>
+        @endguest
     </div>
 
     {{-- Composant Vue pour changer le thème --}}
@@ -31,4 +33,3 @@
 
 </div>
 @endsection
-
