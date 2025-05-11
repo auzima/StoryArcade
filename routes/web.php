@@ -8,37 +8,49 @@ use App\Http\Controllers\ChoiceController;
 use App\Http\Controllers\PlayController;
 use App\Http\Controllers\DashboardController;
 
-// Authentification
-require __DIR__.'/auth.php';
+// Authentification (fortement recommandé de garder au début)
+require __DIR__ . '/auth.php';
 
 // Page d'accueil
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Dashboard (authentifié uniquement)
+// Dashboard (admin seulement)
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth'])
     ->name('dashboard');
 
-// Profil utilisateur
+// Profil utilisateur (authentifié)
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Gestion des jeux (CRUD accessible à tous les utilisateurs connectés)
-Route::resource('games', GameController::class);
-
-// Gestion des scènes et des choix (réservé admin)
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/games/{game}/scenes', [SceneController::class, 'index'])->name('games.scenes.index');
-    Route::resource('scenes', SceneController::class);
-    Route::resource('choices', ChoiceController::class);
-});
-
-// Routes pour jouer
+// Routes publiques pour les jeux
+Route::get('/games', [GameController::class, 'index'])->name('games.index');
 Route::get('/play', [PlayController::class, 'index'])->name('play.index');
 Route::get('/play/{game}/start', [PlayController::class, 'start'])->name('play.start');
 Route::get('/play/scene/{scene}', [PlayController::class, 'play'])->name('play.scene');
+
+// Routes pour CRUD des jeux (authentification requise)
+Route::middleware('auth')->group(function () {
+    Route::resource('games', GameController::class)->except(['index']);
+});
+
+// Routes réservées aux administrateurs (gestion scènes et choix)
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/games/{game}/scenes', [SceneController::class, 'index'])->name('games.scenes.index');
+    Route::get('/games/{game}/scenes/create', [SceneController::class, 'create'])->name('games.scenes.create');
+    Route::post('/scenes', [SceneController::class, 'store'])->name('scenes.store');
+    Route::get('/scenes/{scene}/edit', [SceneController::class, 'edit'])->name('scenes.edit');
+    Route::put('/scenes/{scene}', [SceneController::class, 'update'])->name('scenes.update');
+    Route::delete('/scenes/{scene}', [SceneController::class, 'destroy'])->name('scenes.destroy');
+
+    Route::resource('choices', ChoiceController::class);
+});
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/games/{game}/scenes', [SceneController::class, 'index'])->name('games.scenes.index');
+});
