@@ -6,7 +6,6 @@ import App from "./App.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "./components/HomePage.vue";
 import GamesList from "./components/GamesList.vue";
-
 import SceneChoices from "./components/SceneChoices.vue";
 import GamesPage from "./pages/GamesPage.vue";
 

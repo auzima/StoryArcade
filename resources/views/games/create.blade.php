@@ -19,6 +19,11 @@
         @csrf
 
         <div>
+            <label for="title">Auteur:</label><br>
+            <input type="text" name="author" id="author" value="{{ old('author') }}" required>
+        </div>
+
+        <div>
             <label for="title">Titre :</label><br>
             <input type="text" name="title" id="title" value="{{ old('title') }}" required>
         </div>
@@ -46,4 +51,6 @@
         <br>
         <button type="submit">Créer</button>
     </form>
+    <br>
+    <a href="{{ route('dashboard') }}">← Retour à la liste</a>
 @endsection

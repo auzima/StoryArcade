@@ -45,5 +45,5 @@
     </form>
 
     <br>
-    <a href="{{ route('games.index') }}">← Retour à la liste</a>
+    <a href="{{ route('dashboard') }}">← Retour à la liste</a>
 @endsection

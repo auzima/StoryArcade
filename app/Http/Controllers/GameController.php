@@ -68,7 +68,7 @@ class GameController extends Controller
 
         $game = Game::create($validated);
 
-        return redirect()->route('games.show', $game)
+        return redirect()->route('dashboard')
             ->with('success', 'Jeu créé avec succès.');
     }
 
@@ -103,7 +103,7 @@ class GameController extends Controller
 
         $game->update($validated);
 
-        return redirect()->route('games.show', $game)
+        return redirect()->route('dashboard')
             ->with('success', 'Jeu mis à jour avec succès.');
     }
 
@@ -114,7 +114,7 @@ class GameController extends Controller
     {
         $game->delete();
 
-        return redirect()->route('games.index')
+        return redirect()->route('dashboard')
             ->with('success', 'Jeu supprimé avec succès.');
     }
 }
