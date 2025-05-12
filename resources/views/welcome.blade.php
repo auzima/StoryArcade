@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div id="app" class="min-h-screen">
+<div id="app">
     <home-page></home-page>
 </div>
 @endsection

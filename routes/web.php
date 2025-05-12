@@ -7,14 +7,13 @@ use App\Http\Controllers\SceneController;
 use App\Http\Controllers\ChoiceController;
 use App\Http\Controllers\PlayController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 
 // Authentification (fortement recommandé de garder au début)
 require __DIR__ . '/auth.php';
 
 // Page d'accueil
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Dashboard (admin seulement)
 Route::get('/dashboard', [DashboardController::class, 'index'])

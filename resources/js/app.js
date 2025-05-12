@@ -2,11 +2,25 @@ import "./bootstrap";
 import { createApp } from "vue";
 import { route } from "ziggy-js";
 import App from "./App.vue";
+import { createRouter, createWebHistory } from "vue-router";
+import HomePage from "./components/HomePage.vue";
 
 import SceneChoices from "./components/SceneChoices.vue";
-import HomePage from "./components/HomePage.vue";
 import GamesPage from "./pages/GamesPage.vue";
 import GamesList from "./components/GamesList.vue";
+
+const routes = [
+    {
+        path: "/",
+        name: "home",
+        component: HomePage,
+    },
+];
+
+const router = createRouter({
+    history: createWebHistory(),
+    routes,
+});
 
 // Créer une seule instance de l'application Vue
 const app = createApp(App);
@@ -22,6 +36,8 @@ app.component("games-page", GamesPage);
 // Montage du composant GamesList
 const gamesList = createApp(GamesList);
 gamesList.mount("#games-list");
+
+app.use(router);
 
 // Monter l'application sur #vue-app s'il existe
 const mountVueApp = document.getElementById("vue-app");
