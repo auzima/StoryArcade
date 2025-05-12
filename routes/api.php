@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\V1\GameController;
 
 Route::prefix('api/v1/')->group(function () {
   Route::get('/test', function () {
@@ -16,4 +17,6 @@ Route::prefix('api/v1/')->group(function () {
     sleep(2); // Simulate a long-running process
     return response()->json(['timeClient' => $timeClient, 'timeServer' => now()]);
   });
+
+  Route::get('/games', [GameController::class, 'index']);
 });

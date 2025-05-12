@@ -1,52 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="flex flex-col justify-center items-center min-h-screen text-center px-4 space-y-6">
-
-    <h1 class="text-3xl font-bold">
-        Bienvenue sur <span class="text-gray-600 dark:text-gray-300">StoryArcade</span>
-    </h1>
-
-    <p class="max-w-xl text-lg text-gray-700 dark:text-gray-200">
-        Découvrez une sélection de jeux narratifs où chaque décision façonne le cours de l'histoire.
-    </p>
-
-    <p class="max-w-xl text-base text-gray-600 dark:text-gray-400">
-        Plongez dans des univers variés — fantastiques, mystérieux, futuristes ou réalistes — et vivez des aventures interactives uniques.
-    </p>
-
-    <div class="flex gap-4 mt-6">
-        <a href="{{ route('play.index') }}" class="bg-green-600 text-white px-6 py-3 rounded hover:bg-green-700 font-semibold">
-            🎮 Découvrir les jeux
-        </a>
-        @guest
-        <form action="{{ route('login') }}" method="GET" class="inline">
-            <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 font-semibold">
-                🔐 Administration
-            </button>
-        </form>
-        @endguest
-    </div>
-
-    {{-- Composant Vue pour changer le thème --}}
-    <div id="theme-toggle" class="mt-6">
-        <theme-toggle></theme-toggle>
-    </div>
-
+<div id="app" class="min-h-screen">
+    <home-page></home-page>
 </div>
-
-@push('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const adminButton = document.querySelector('button[onclick*="login"]');
-        if (adminButton) {
-            adminButton.addEventListener('click', function(e) {
-                e.preventDefault();
-                window.location.href = '/login';
-            });
-        }
-    });
-</script>
-@endpush
-
 @endsection
