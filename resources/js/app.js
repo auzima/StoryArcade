@@ -4,7 +4,6 @@ import { route } from "ziggy-js";
 import App from "./App.vue";
 
 import SceneChoices from "./components/SceneChoices.vue";
-import ThemeToggle from "./components/ThemeToggle.vue";
 import HomePage from "./components/HomePage.vue";
 import GamesPage from "./pages/GamesPage.vue";
 
@@ -16,7 +15,6 @@ app.config.globalProperties.$route = route;
 
 // Enregistrer tous les composants globaux
 app.component("scene-choices", SceneChoices);
-app.component("theme-toggle", ThemeToggle);
 app.component("home-page", HomePage);
 app.component("games-page", GamesPage);
 

@@ -23,13 +23,8 @@
         🔐 Administration
       </a>
     </div>
-
-    <div class="mt-6">
-      <theme-toggle />
-    </div>
   </div>
 </template>
 
 <script setup>
-import ThemeToggle from './ThemeToggle.vue';
 </script>
