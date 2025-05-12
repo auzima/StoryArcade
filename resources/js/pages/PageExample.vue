@@ -26,11 +26,11 @@
       <p class="text-red-400" v-if="delError">{{ delError }}</p>
       <div class="space-x-4">
         <button @click="timeFetch()" :disabled="timeLoading" class="btn-primary">
-          Fetch time
-        </button>
+      Fetch time
+    </button>
         <button @click="abortTimeFetch()" :disabled="!timeLoading" class="btn-primary">
-          Abort
-        </button>
+      Abort
+    </button>
       </div>
       <p v-if="timeLoading" class="text-yellow-400">Loading...</p>
       <p v-if="time" class="text-gray-300">{{ time }}</p>

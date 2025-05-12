@@ -1,13 +1,15 @@
 import "./bootstrap";
 import { createApp } from "vue";
+import { route } from "ziggy-js";
+import App from "./App.vue";
 
 import SceneChoices from "./components/SceneChoices.vue";
 import ThemeToggle from "./components/ThemeToggle.vue";
-import HomePage from "./components/HomePage.Vue";
+import HomePage from "./components/HomePage.vue";
 import GamesPage from "./pages/GamesPage.vue";
 
 // Créer une seule instance de l'application Vue
-const app = createApp({});
+const app = createApp(App);
 
 // Enregistrer tous les composants globaux
 app.component("scene-choices", SceneChoices);
@@ -26,3 +28,5 @@ const mountApp = document.getElementById("app");
 if (mountApp) {
     app.mount("#app");
 }
+
+window.route = route;

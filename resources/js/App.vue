@@ -1,17 +1,9 @@
 <script setup>
-  import { ref } from 'vue';
-  import TheHeader from '@/components/TheHeader.vue';
-  import PageExample from '@/pages/PageExample.vue';
-  const n = ref(1);
+  // Pas de logique supplémentaire nécessaire ici
 </script>
 
 <template>
-  <div class="min-h-screen bg-black text-white">
-    <TheHeader />
-    <main>
-      <PageExample />
-    </main>
-  </div>
+  <home-page />
 </template>
 
 <style>

@@ -63,3 +63,4 @@ class GameController extends Controller
         ]);
     }
 }
+ 
