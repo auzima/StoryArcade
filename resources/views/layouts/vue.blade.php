@@ -17,9 +17,7 @@
     @yield('content')
   </div>
   <script>
-    window.Ziggy = {
-      !!json_encode(\Ziggy\ Ziggy::config()) !!
-    };
+    window.Ziggy = @json(\Ziggy\ Ziggy::config());
   </script>
 </body>
 
