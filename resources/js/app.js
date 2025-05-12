@@ -11,6 +11,9 @@ import GamesPage from "./pages/GamesPage.vue";
 // Créer une seule instance de l'application Vue
 const app = createApp(App);
 
+// Rendre la fonction route disponible globalement
+app.config.globalProperties.$route = route;
+
 // Enregistrer tous les composants globaux
 app.component("scene-choices", SceneChoices);
 app.component("theme-toggle", ThemeToggle);
@@ -28,5 +31,3 @@ const mountApp = document.getElementById("app");
 if (mountApp) {
     app.mount("#app");
 }
-
-window.route = route;

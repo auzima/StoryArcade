@@ -13,13 +13,13 @@
     </p>
 
     <div class="flex gap-4 mt-6">
-      <a :href="playIndexRoute"
+      <a :href="getRoute('play.index')"
          class="btn-primary">
         🎮 Découvrir les jeux
       </a>
 
-      <a v-if="loginRoute"
-         :href="loginRoute"
+      <a v-if="hasRoute('login')"
+         :href="getRoute('login')"
          class="btn-primary">
         🔐 Administration
       </a>
@@ -33,20 +33,25 @@
 
 <script setup>
 import ThemeToggle from './ThemeToggle.vue';
-import { route } from 'ziggy-js';
-import { ref, onMounted } from 'vue';
+import { getCurrentInstance } from 'vue';
 
-const playIndexRoute = ref('/play');
-const loginRoute = ref(null);
+const { proxy } = getCurrentInstance();
 
-onMounted(() => {
+const getRoute = (name) => {
   try {
-    playIndexRoute.value = route('play.index');
-    if (route().has('login')) {
-      loginRoute.value = route('login');
-    }
+    return proxy.$route(name);
   } catch (error) {
-    console.error('Erreur lors de l\'initialisation des routes:', error);
+    console.error(`Erreur lors de la génération de la route ${name}:`, error);
+    return '#';
   }
-});
+};
+
+const hasRoute = (name) => {
+  try {
+    return proxy.$route().has(name);
+  } catch (error) {
+    console.error(`Erreur lors de la vérification de la route ${name}:`, error);
+    return false;
+  }
+};
 </script>

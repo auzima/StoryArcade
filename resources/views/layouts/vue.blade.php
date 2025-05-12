@@ -8,6 +8,7 @@
   <meta name="api-base-url" content="{{ url('api/v1') }}">
   <title>@yield('title')</title>
   @routes
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
   @yield('app')
 </head>
 
@@ -15,7 +16,11 @@
   <div id="app">
     @yield('content')
   </div>
-  @vite(['resources/css/app.css', 'resources/js/app.js'])
+  <script>
+    window.Ziggy = {
+      !!json_encode(\Ziggy\ Ziggy::config()) !!
+    };
+  </script>
 </body>
 
 </html>
