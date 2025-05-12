@@ -59,3 +59,6 @@ Route::prefix('/api/v1')->group(function () {
         ]);
     });
 });
+
+// Route pour le jeu
+Route::view('/play/{any?}', 'play')->where('any', '.*');

@@ -59,7 +59,7 @@ const fetchGames = async () => {
     loading.value = true
     error.value = null
     
-    const response = await fetch('http://127.0.0.1:8001/api/v1/games', {
+    const response = await fetch('http://127.0.0.1:8000/api/v1/games', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',

@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\V1\GameController;
 use App\Http\Controllers\Api\V1\SceneController;
 use App\Http\Controllers\Api\V1\ChoiceController;
 use App\Http\Controllers\Api\V1\PlayController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,9 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('choices', ChoiceController::class);
   });
 });
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+  return $request->user();
+});
+
+Route::get('/scenes/{id}', [SceneController::class, 'show']);
