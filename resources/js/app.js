@@ -1,19 +1,26 @@
+
 import "./bootstrap";
 import { createApp } from "vue";
 import { route } from "ziggy-js";
 import App from "./App.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "./components/HomePage.vue";
+import GamesList from "./components/GamesList.vue";
 
 import SceneChoices from "./components/SceneChoices.vue";
 import GamesPage from "./pages/GamesPage.vue";
-import GamesList from "./components/GamesList.vue";
+
 
 const routes = [
     {
         path: "/",
         name: "home",
         component: HomePage,
+    },
+    {
+        path: "/play",
+        name: "play.index",
+        component: GamesList,
     },
 ];
 
@@ -32,10 +39,7 @@ app.config.globalProperties.$route = route;
 app.component("scene-choices", SceneChoices);
 app.component("home-page", HomePage);
 app.component("games-page", GamesPage);
-
-// Montage du composant GamesList
-const gamesList = createApp(GamesList);
-gamesList.mount("#games-list");
+app.component("games-list", GamesList);
 
 app.use(router);
 
