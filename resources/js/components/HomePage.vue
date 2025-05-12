@@ -14,9 +14,9 @@
                     </div>
 
                     <div class="flex items-center">
-                        <a href="/play" class="text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md font-medium">
+                        <!-- <a href="/play" class="text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md font-medium">
                             🎮 Jouer
-                        </a>
+                        </a> -->
                         <a href="/login" class="text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md font-medium">
                             🔐 Administration
                         </a>
@@ -40,13 +40,17 @@
                     </div>
 
                     <div class="text-center">
-                        <router-link 
-                            :to="{ name: 'play.index' }" 
-                            class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-pink-500 hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
-                        >
-                            Découvrir les jeux
-                        </router-link>
-                    </div>
+            <!-- remplacez le router-link par un <a> -->
+            <a
+                href="/play"
+                class="inline-flex items-center px-6 py-3 border border-transparent
+                       text-base font-medium rounded-md text-white bg-pink-500
+                       hover:bg-pink-600 focus:outline-none focus:ring-2
+                       focus:ring-offset-2 focus:ring-pink-500"
+            >
+                Découvrir les jeux
+            </a>
+        </div>
                 </div>
             </div>
         </div>

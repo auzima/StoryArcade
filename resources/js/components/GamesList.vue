@@ -59,7 +59,7 @@ const fetchGames = async () => {
     loading.value = true
     error.value = null
     
-    const response = await fetch('/games', {
+    const response = await fetch('http://127.0.0.1:8001/api/v1/games', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -73,11 +73,7 @@ const fetchGames = async () => {
     }
 
     const data = await response.json()
-    if (data.success) {
-      games.value = data.data
-    } else {
-      throw new Error(data.message || 'Erreur lors du chargement des jeux')
-    }
+    games.value = data.data
   } catch (err) {
     console.error('Erreur détaillée:', err)
     error.value = 'Impossible de charger les jeux. Veuillez réessayer plus tard.'

@@ -32,17 +32,21 @@ class GameController extends Controller
         $sortDirection = $request->get('direction', 'desc');
         $query->orderBy($sortField, $sortDirection);
 
-        $games = $query->paginate(12);
+        $games = $query->get()->map(function ($game) {
+            return [
+                'id' => $game->id,
+                'title' => $game->title,
+                'description' => $game->description,
+                'author' => $game->user ? $game->user->name : 'Anonyme',
+                'version' => $game->version ?? '1.0',
+                'cover_image' => $game->scenes->first()?->image
+                    ? asset('storage/' . $game->scenes->first()->image)
+                    : null,
+            ];
+        });
 
         return response()->json([
-            'data' => new GameCollection($games),
-            'meta' => [
-                'current_page' => $games->currentPage(),
-                'last_page' => $games->lastPage(),
-                'per_page' => $games->perPage(),
-                'total' => $games->total(),
-                'last_updated' => now()->format('Y-m-d H:i:s')
-            ]
+            'data' => $games
         ]);
     }
 
@@ -62,5 +66,12 @@ class GameController extends Controller
             'data' => new GameResource($game->load(['scenes', 'user']))
         ]);
     }
+
+    public function list(): JsonResponse
+    {
+        $games = Game::all();
+        return response()->json([
+            'data' => $games
+        ]);
+    }
 }
- 

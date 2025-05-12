@@ -8,6 +8,7 @@ use App\Http\Controllers\ChoiceController;
 use App\Http\Controllers\PlayController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Models\Game;
 
 // Authentification (fortement recommandé de garder au début)
 require __DIR__ . '/auth.php';
@@ -48,4 +49,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::delete('/scenes/{scene}', [SceneController::class, 'destroy'])->name('scenes.destroy');
 
     Route::resource('choices', ChoiceController::class);
+});
+
+Route::prefix('/api/v1')->group(function () {
+    Route::get('/games', function () {
+        $games = Game::all();
+        return response()->json([
+            'data' => $games
+        ]);
+    });
 });
