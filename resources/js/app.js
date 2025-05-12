@@ -6,6 +6,7 @@ import App from "./App.vue";
 import SceneChoices from "./components/SceneChoices.vue";
 import HomePage from "./components/HomePage.vue";
 import GamesPage from "./pages/GamesPage.vue";
+import GamesList from "./components/GamesList.vue";
 
 // Créer une seule instance de l'application Vue
 const app = createApp(App);
@@ -17,6 +18,10 @@ app.config.globalProperties.$route = route;
 app.component("scene-choices", SceneChoices);
 app.component("home-page", HomePage);
 app.component("games-page", GamesPage);
+
+// Montage du composant GamesList
+const gamesList = createApp(GamesList);
+gamesList.mount("#games-list");
 
 // Monter l'application sur #vue-app s'il existe
 const mountVueApp = document.getElementById("vue-app");

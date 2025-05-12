@@ -50,7 +50,3 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::resource('choices', ChoiceController::class);
 });
-
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/games/{game}/scenes', [SceneController::class, 'index'])->name('games.scenes.index');
-});

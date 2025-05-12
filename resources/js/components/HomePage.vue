@@ -12,15 +12,10 @@
       Plongez dans des univers variés — fantastiques, mystérieux, futuristes ou réalistes — et vivez des aventures interactives uniques.
     </p>
 
-    <div class="flex gap-4 mt-6">
+    <div class="mt-6">
       <a href="/play"
          class="btn-primary">
         🎮 Découvrir les jeux
-      </a>
-
-      <a href="/login"
-         class="btn-primary">
-        🔐 Administration
       </a>
     </div>
   </div>

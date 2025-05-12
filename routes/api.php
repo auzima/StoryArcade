@@ -14,8 +14,8 @@ use App\Http\Controllers\Api\V1\PlayController;
 
 Route::prefix('v1')->group(function () {
   // Routes publiques
-  Route::get('/games', [GameController::class, 'index']);
-  Route::get('/games/{game}', [GameController::class, 'show']);
+  Route::get('/games', [GameController::class, 'index'])->name('api.games.index');
+  Route::get('/games/{game}', [GameController::class, 'show'])->name('api.games.show');
 
   // Routes pour le jeu
   Route::prefix('play')->group(function () {

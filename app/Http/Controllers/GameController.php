@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreGameRequest;
 use App\Http\Requests\UpdateGameRequest;
@@ -10,17 +11,43 @@ use App\Http\Requests\UpdateGameRequest;
 class GameController extends Controller
 {
     /**
-     * Affiche tous les jeux (liste)
+     * Affiche la liste des jeux.
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        // Charge les scènes pour chaque jeu afin d'afficher les images de couverture
-        $games = Game::with('scenes')->get();
-        return view('games.index', compact('games'));
+        try {
+            $games = Game::select(['id', 'title', 'description', 'author', 'version'])
+                ->get()
+                ->map(function ($game) {
+                    return [
+                        'id' => $game->id,
+                        'title' => $game->title,
+                        'description' => $game->description,
+                        'author' => $game->author,
+                        'version' => $game->version,
+                        'cover_image' => $game->scenes->first()?->image
+                            ? asset('storage/' . $game->scenes->first()->image)
+                            : null,
+                    ];
+                });
+
+            return response()->json([
+                'success' => true,
+                'data' => $games
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Erreur lors de la récupération des jeux',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
     /**
-     * Affiche le formulaire de création
+     * Affiche le formulaire de création d'un jeu.
      */
     public function create()
     {
@@ -28,29 +55,34 @@ class GameController extends Controller
     }
 
     /**
-     * Enregistre un nouveau jeu
+     * Enregistre un nouveau jeu.
      */
-    public function store(StoreGameRequest $request)
+    public function store(Request $request)
     {
-        Game::create([
-            ...$request->validated(),
-            'author' => 'Invité',
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'author' => 'required|string|max:255',
+            'version' => 'required|string|max:50',
         ]);
-    
-        // Redirection vers /dashboard au lieu de /games
-        return redirect()->route('dashboard')->with('success', 'Jeu créé avec succès !');
+
+        $game = Game::create($validated);
+
+        return redirect()->route('games.show', $game)
+            ->with('success', 'Jeu créé avec succès.');
     }
 
     /**
-     * Affiche un jeu en particulier
+     * Affiche un jeu spécifique.
      */
     public function show(Game $game)
     {
         $game->load('scenes');
         return view('games.show', compact('game'));
     }
+
     /**
-     * Affiche le formulaire de modification
+     * Affiche le formulaire d'édition d'un jeu.
      */
     public function edit(Game $game)
     {
@@ -58,21 +90,31 @@ class GameController extends Controller
     }
 
     /**
-     * Met à jour les données d’un jeu
+     * Met à jour un jeu spécifique.
      */
-    public function update(UpdateGameRequest $request, Game $game)
+    public function update(Request $request, Game $game)
     {
-        $game->update($request->validated());
-        return redirect()->route('games.index')->with('success', 'Jeu mis à jour avec succès !');
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'author' => 'required|string|max:255',
+            'version' => 'required|string|max:50',
+        ]);
+
+        $game->update($validated);
+
+        return redirect()->route('games.show', $game)
+            ->with('success', 'Jeu mis à jour avec succès.');
     }
 
     /**
-     * Supprime un jeu
+     * Supprime un jeu spécifique.
      */
     public function destroy(Game $game)
-{
-    $game->delete();
+    {
+        $game->delete();
 
-    return redirect()->route('dashboard')->with('success', 'Jeu supprimé.');
-}
+        return redirect()->route('games.index')
+            ->with('success', 'Jeu supprimé avec succès.');
+    }
 }
