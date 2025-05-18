@@ -5,12 +5,14 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
-    public function up(): void {
+    public function up(): void
+    {
         Schema::create('scenes', function (Blueprint $table) {
-            $table->string('id')->primary(); // Utilise les titres comme ID personnalisée (ex: "PitchVogue")
+            $table->increments('id');
             $table->foreignId('game_id')->constrained()->onDelete('cascade');
             $table->string('title');
-            $table->text('description');
+            $table->text('content');
+            $table->integer('order')->default(0);
             $table->string('image')->nullable();
             $table->boolean('is_ending')->default(false);
             $table->json('conditions')->nullable();
@@ -18,7 +20,8 @@ return new class extends Migration {
         });
     }
 
-    public function down(): void {
+    public function down(): void
+    {
         Schema::dropIfExists('scenes');
     }
 };

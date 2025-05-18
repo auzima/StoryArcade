@@ -19,6 +19,9 @@ class ChoiceResource extends JsonResource
             'text' => $this->text,
             'scene_id' => $this->scene_id,
             'next_scene_id' => $this->next_scene_id,
+            'order' => $this->order,
+            'scene' => new SceneResource($this->whenLoaded('scene')),
+            'next_scene' => new SceneResource($this->whenLoaded('nextScene')),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
         ];

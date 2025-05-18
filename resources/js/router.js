@@ -1,23 +1,23 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomePage from "./components/HomePage.vue";
-import SceneList from "./components/SceneList.vue";
-import ScenePage from "./components/ScenePage.vue";
+import Home from "./pages/Home.vue";
+import GamesList from "./pages/GamesList.vue";
+import GamePlay from "./pages/GamePlay.vue";
 
 const routes = [
     {
         path: "/",
-        component: HomePage,
+        component: Home,
         name: "home",
     },
     {
         path: "/play",
-        component: SceneList,
-        name: "play.index",
+        component: GamesList,
+        name: "games.list",
     },
     {
-        path: "/play/:id",
-        component: ScenePage,
-        name: "scene",
+        path: "/games/:id/play",
+        component: GamePlay,
+        name: "games.play",
         props: true,
     },
 ];

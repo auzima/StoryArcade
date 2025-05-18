@@ -5,7 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
-    public function up(): void {
+    public function up(): void
+    {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
             $table->string('title');
@@ -13,11 +14,14 @@ return new class extends Migration {
             $table->string('version');
             $table->text('description')->nullable();
             $table->json('initial_state')->nullable();
+            $table->boolean('is_published')->default(true);
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
             $table->timestamps();
         });
     }
 
-    public function down(): void {
+    public function down(): void
+    {
         Schema::dropIfExists('games');
     }
 };

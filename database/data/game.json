@@ -3,15 +3,7 @@
     "title": "Sauvage & Lune",
     "author": "AZ",
     "version": "1.0",
-    "description": "Un jeu narratif où vos choix façonneront l'avenir de Luna, styliste indépendante et créatrice de mode éthique.",
-    "initial_state": {
-      "hasSeenAlex": false,
-      "burnout": 0,
-      "careerPoints": 0,
-      "relationshipPoints": 0,
-      "inspired": false,
-      "vogueAccepted": false
-    }
+    "description": "Un jeu narratif où vos choix façonneront l'avenir de Luna, styliste indépendante et créatrice de mode éthique."
   },
   "scenes": [
     {
@@ -23,26 +15,15 @@
       "choices": [
         {
           "text": "Aller pitcher chez Vogue, c'est l'opportunité pro de ta vie",
-          "next_scene": "PitchVogue",
-          "effects": {
-            "careerPoints": 1,
-            "burnout": 1
-          }
+          "next_scene": "PitchVogue"
         },
         {
           "text": "Revoir Alex et clarifier enfin ce qu'il se passe entre vous",
-          "next_scene": "BrunchAlex",
-          "effects": {
-            "hasSeenAlex": true,
-            "relationshipPoints": 1
-          }
+          "next_scene": "BrunchAlex"
         },
         {
           "text": "Prendre une journée OFF, ton mental en a besoin",
-          "next_scene": "RienFaire",
-          "effects": {
-            "burnout": -1
-          }
+          "next_scene": "RienFaire"
         }
       ]
     },
@@ -55,19 +36,11 @@
       "choices": [
         {
           "text": "Tu replies sur Alex pour ne pas craquer",
-          "next_scene": "MomentAlex",
-          "effects": {
-            "relationshipPoints": 1,
-            "burnout": -1
-          }
+          "next_scene": "MomentAlex"
         },
         {
           "text": "Tu décides de poster une série de looks pour buzzer malgré tout",
-          "next_scene": "ViralBoost",
-          "effects": {
-            "careerPoints": 1,
-            "burnout": 1
-          }
+          "next_scene": "ViralBoost"
         }
       ]
     },
@@ -80,19 +53,11 @@
       "choices": [
         {
           "text": "Tu choisis l'amour et pars en escapade",
-          "next_scene": "VoyageAlex",
-          "effects": {
-            "relationshipPoints": 2,
-            "careerPoints": -1
-          }
+          "next_scene": "VoyageAlex"
         },
         {
           "text": "Tu restes focus, même si ça fait mal",
-          "next_scene": "FocusProjet",
-          "effects": {
-            "careerPoints": 1,
-            "relationshipPoints": -1
-          }
+          "next_scene": "FocusProjet"
         }
       ]
     },
@@ -105,17 +70,11 @@
       "choices": [
         {
           "text": "Laisser libre cours à ton imagination",
-          "next_scene": "CarnetReveil",
-          "effects": {
-            "inspired": true
-          }
+          "next_scene": "CarnetReveil"
         },
         {
           "text": "Tu scrolles jusqu'à t'endormir… et rien ne change",
-          "next_scene": "FinFlop",
-          "effects": {
-            "burnout": 1
-          }
+          "next_scene": "FinFlop"
         }
       ]
     },
@@ -128,32 +87,19 @@
       "choices": [
         {
           "text": "Créer une robe expérimentale à partir du dessin",
-          "next_scene": "RobeExperimentale",
-          "effects": {
-            "careerPoints": 1,
-            "burnout": 1
-          }
+          "next_scene": "RobeExperimentale"
         },
         {
           "text": "Le scanner et en faire un motif imprimé",
-          "next_scene": "ImpressionMotif",
-          "effects": {
-            "careerPoints": 1
-          }
+          "next_scene": "ImpressionMotif"
         },
         {
           "text": "Le publier anonymement sur un compte Insta secondaire",
-          "next_scene": "InstaSecret",
-          "effects": {
-            "careerPoints": 1
-          }
+          "next_scene": "InstaSecret"
         },
         {
           "text": "Tout déchirer et recommencer un nouveau carnet",
-          "next_scene": "CarnetNeuf",
-          "effects": {
-            "burnout": -1
-          }
+          "next_scene": "CarnetNeuf"
         }
       ]
     },
@@ -166,11 +112,7 @@
       "choices": [
         {
           "text": "Tu acceptes une interview pour expliquer ton processus",
-          "next_scene": "CollectionComeback",
-          "effects": {
-            "careerPoints": 1,
-            "vogueAccepted": true
-          }
+          "next_scene": "CollectionComeback"
         }
       ]
     },
@@ -182,11 +124,7 @@
       "choices": [
         {
           "text": "Tu développes une micro-collection autour du motif",
-          "next_scene": "CollectionComeback",
-          "effects": {
-            "careerPoints": 2,
-            "burnout": 1
-          }
+          "next_scene": "CollectionComeback"
         }
       ]
     },
@@ -198,10 +136,7 @@
       "choices": [
         {
           "text": "Tu replies honnêtement et acceptes de revendiquer ton style",
-          "next_scene": "CollectionComeback",
-          "effects": {
-            "careerPoints": 2
-          }
+          "next_scene": "CollectionComeback"
         }
       ]
     },
@@ -214,11 +149,7 @@
       "choices": [
         {
           "text": "Tu organises une mini-expo chez toi pour montrer les dessins",
-          "next_scene": "CollectionComeback",
-          "effects": {
-            "careerPoints": 1,
-            "burnout": 1
-          }
+          "next_scene": "CollectionComeback"
         }
       ]
     },
@@ -230,19 +161,11 @@
       "choices": [
         {
           "text": "Tu profites de ton bonheur et choisis de tout reconstruire autrement",
-          "next_scene": "FinLoveOnly",
-          "effects": {
-            "relationshipPoints": 2
-          }
+          "next_scene": "FinLoveOnly"
         },
         {
           "text": "Tu te lances à fond pour reprendre ta place, le cœur plein",
-          "next_scene": "RevancheStylée",
-          "effects": {
-            "relationshipPoints": 1,
-            "careerPoints": 1,
-            "burnout": 1
-          }
+          "next_scene": "RevancheStylée"
         }
       ]
     },
@@ -255,18 +178,11 @@
       "choices": [
         {
           "text": "Tu lui réponds : tu veux les deux",
-          "next_scene": "FinCarriereLove",
-          "effects": {
-            "careerPoints": 1,
-            "relationshipPoints": 1
-          }
+          "next_scene": "FinCarriereLove"
         },
         {
           "text": "Tu restes centrée sur ton glow-up solo",
-          "next_scene": "FinCarriereOnly",
-          "effects": {
-            "careerPoints": 2
-          }
+          "next_scene": "FinCarriereOnly"
         }
       ]
     },
@@ -279,19 +195,11 @@
       "choices": [
         {
           "text": "Tu assumes ton choix amoureux, coûte que coûte",
-          "next_scene": "FinLoveOnly",
-          "effects": {
-            "relationshipPoints": 1,
-            "careerPoints": -1
-          }
+          "next_scene": "FinLoveOnly"
         },
         {
           "text": "Tu te bats pour récupérer ta crédibilité en ligne",
-          "next_scene": "RevancheStylée",
-          "effects": {
-            "careerPoints": 1,
-            "burnout": 1
-          }
+          "next_scene": "RevancheStylée"
         }
       ]
     },
@@ -304,20 +212,11 @@
       "choices": [
         {
           "text": "Tu relances Alex avec vulnérabilité",
-          "next_scene": "FinCarriereLove",
-          "effects": {
-            "relationshipPoints": 1
-          },
-          "conditions": {
-            "relationshipPoints": { "gte": 1 }
-          }
+          "next_scene": "FinCarriereLove"
         },
         {
           "text": "Tu lâches prise et acceptes le glow-up solo",
-          "next_scene": "FinCarriereOnly",
-          "effects": {
-            "careerPoints": 1
-          }
+          "next_scene": "FinCarriereOnly"
         }
       ]
     },
@@ -330,19 +229,11 @@
       "choices": [
         {
           "text": "Tu t'effondres mais transformes ta douleur en art",
-          "next_scene": "FinCarriereOnly",
-          "effects": {
-            "careerPoints": 2,
-            "burnout": 1
-          }
+          "next_scene": "FinCarriereOnly"
         },
         {
           "text": "Tu lui écris une lettre honnête et tu passes à autre chose",
-          "next_scene": "FinLoveOnly",
-          "effects": {
-            "relationshipPoints": 1,
-            "burnout": -1
-          }
+          "next_scene": "FinLoveOnly"
         }
       ]
     },
@@ -355,23 +246,11 @@
       "choices": [
         {
           "text": "Tu refuses, tu n'as plus besoin d'eux",
-          "next_scene": "FinCarriereOnly",
-          "effects": {
-            "careerPoints": 1,
-            "burnout": -1
-          }
+          "next_scene": "FinCarriereOnly"
         },
         {
           "text": "Tu acceptes et proposes Alex comme photographe",
-          "next_scene": "FinCarriereLove",
-          "effects": {
-            "careerPoints": 1,
-            "relationshipPoints": 1
-          },
-          "conditions": {
-            "hasSeenAlex": true,
-            "relationshipPoints": { "gte": 2 }
-          }
+          "next_scene": "FinCarriereLove"
         }
       ]
     },
@@ -381,10 +260,6 @@
       "description": "🌟 Tu gagnes ta place, ton respect, et ton équilibre.  \nAlex devient ton partenaire en création comme en amour.  \nVous montez un studio ensemble à Lisbonne.\n\n🏁 *Fin débloquée : Boss Lady & Love Story ✨*",
       "image": "scene16.jpg",
       "is_ending": true,
-      "conditions": {
-        "careerPoints": { "gte": 3 },
-        "relationshipPoints": { "gte": 2 }
-      },
       "choices": []
     },
     {
@@ -393,9 +268,6 @@
       "description": "💞 Tu n'as pas gagné tous les concours.  \nMais tu as gagné en amour, en paix, en clarté.  \nLuna & Alex : un duo doux, imparfait, sincère.\n\n🏁 *Fin débloquée : Amour avant le succès 💖*",
       "image": "scene17.jpg",
       "is_ending": true,
-      "conditions": {
-        "relationshipPoints": { "gte": 2 }
-      },
       "choices": []
     },
     {
@@ -404,9 +276,6 @@
       "description": "👑 Tu as percé sans détour, sans dépendance.  \nTu voyages, tu crées, tu inspires. Tu es ta propre victoire.\n\n🏁 *Fin débloquée : Indépendante & Inarrêtable 💼*",
       "image": "scene18.jpg",
       "is_ending": true,
-      "conditions": {
-        "careerPoints": { "gte": 3 }
-      },
       "choices": []
     },
     {

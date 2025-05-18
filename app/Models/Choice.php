@@ -13,18 +13,21 @@ class Choice extends Model
     protected $fillable = [
         'scene_id',
         'text',
-        'next_scene',
-        'effects',
-        'conditions',
+        'next_scene_id',
+        'order',
     ];
 
     protected $casts = [
-        'effects' => 'array',
-        'conditions' => 'array',
+        'order' => 'integer',
     ];
 
     public function scene(): BelongsTo
     {
         return $this->belongsTo(Scene::class);
+    }
+
+    public function nextScene(): BelongsTo
+    {
+        return $this->belongsTo(Scene::class, 'next_scene_id');
     }
 }

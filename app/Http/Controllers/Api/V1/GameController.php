@@ -19,34 +19,21 @@ class GameController extends Controller
      */
     public function index(Request $request): JsonResponse
     {
-        $query = Game::with(['scenes', 'user'])
-            ->where('is_published', true);
-
-        // Filtrage par difficulté
-        if ($request->has('difficulty')) {
-            $query->where('difficulty', $request->difficulty);
-        }
-
-        // Tri
-        $sortField = $request->get('sort', 'created_at');
-        $sortDirection = $request->get('direction', 'desc');
-        $query->orderBy($sortField, $sortDirection);
-
-        $games = $query->get()->map(function ($game) {
-            return [
-                'id' => $game->id,
-                'title' => $game->title,
-                'description' => $game->description,
-                'author' => $game->user ? $game->user->name : 'Anonyme',
-                'version' => $game->version ?? '1.0',
-                'cover_image' => $game->scenes->first()?->image
-                    ? asset('storage/' . $game->scenes->first()->image)
-                    : null,
-            ];
-        });
+        $games = Game::with(['scenes', 'user'])
+            ->where('is_published', true)
+            ->get();
 
         return response()->json([
-            'data' => $games
+            'success' => true,
+            'data' => $games->map(function ($game) {
+                return [
+                    'id' => $game->id,
+                    'title' => $game->title,
+                    'description' => $game->description,
+                    'version' => $game->version,
+                    'cover_image' => $game->scenes->first()?->image ? asset('storage/' . $game->scenes->first()->image) : null,
+                ];
+            })
         ]);
     }
 
@@ -58,20 +45,30 @@ class GameController extends Controller
      */
     public function show(Game $game): JsonResponse
     {
-        if (!$game->is_published) {
-            return response()->json(['message' => 'Jeu non trouvé'], 404);
-        }
-
         return response()->json([
+            'success' => true,
             'data' => new GameResource($game->load(['scenes', 'user']))
         ]);
     }
 
-    public function list(): JsonResponse
+    public function published(): JsonResponse
     {
-        $games = Game::all();
+        $games = Game::where('is_published', true)
+            ->with(['scenes' => function ($query) {
+                $query->orderBy('order');
+            }])
+            ->get();
+
         return response()->json([
-            'data' => $games
+            'data' => $games->map(function ($game) {
+                return [
+                    'id' => $game->id,
+                    'title' => $game->title,
+                    'description' => $game->description,
+                    'version' => $game->version,
+                    'cover_image' => $game->scenes->first()?->image ? asset('storage/' . $game->scenes->first()->image) : null,
+                ];
+            })
         ]);
     }
 }

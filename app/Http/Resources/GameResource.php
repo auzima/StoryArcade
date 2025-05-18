@@ -18,15 +18,16 @@ class GameResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
-            'thumbnail' => $this->thumbnail,
-            'difficulty' => $this->difficulty,
+            'version' => $this->version,
             'is_published' => $this->is_published,
-            'scenes_count' => $this->scenes->count(),
-            'estimated_duration' => $this->scenes->count() * 5 . ' minutes',
-            'author' => $this->user ? [
-                'id' => $this->user->id,
-                'name' => $this->user->name,
-            ] : null,
+            'scenes_count' => $this->whenCounted('scenes'),
+            'choices_count' => $this->whenCounted('choices'),
+            'author' => $this->when(isset($this->user), function () {
+                return [
+                    'id' => $this->user->id,
+                    'name' => $this->user->name,
+                ];
+            }),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
             'scenes' => SceneResource::collection($this->whenLoaded('scenes')),

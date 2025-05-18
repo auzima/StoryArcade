@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Game extends Model
 {
@@ -12,30 +13,34 @@ class Game extends Model
 
     protected $fillable = [
         'title',
-        'author',
-        'version',
         'description',
-        'initial_state',
+        'version',
+        'is_published',
+        'user_id',
+        'author',
     ];
 
     protected $casts = [
-        'initial_state' => 'array',
+        'is_published' => 'boolean',
     ];
-  
 
     public function scenes(): HasMany
     {
         return $this->hasMany(Scene::class);
     }
 
-    public function saves(): HasMany
+    public function choices(): HasMany
     {
-        return $this->hasMany(SaveGame::class);
+        return $this->hasMany(Choice::class);
     }
 
-    // App\Models\Game.php
-public function firstScene()
-{
-    return $this->scenes()->orderBy('id')->first();
-}
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function firstScene()
+    {
+        return $this->scenes()->orderBy('order')->first();
+    }
 }

@@ -11,49 +11,59 @@ class GameSeeder extends Seeder
 {
     public function run(): void
     {
-        $jsonData = json_decode(file_get_contents(database_path('data/game.json')), true);
-
-        // Créer le jeu principal
+        // Créer un jeu de test
         $game = Game::create([
-            'title' => $jsonData['game']['title'],
-            'author' => $jsonData['game']['author'],
-            'version' => $jsonData['game']['version'],
-            'description' => $jsonData['game']['description'],
-            'initial_state' => $jsonData['game']['initial_state']
+            'title' => 'Sauvage & Lune',
+            'description' => 'Une aventure mystérieuse dans un monde enchanté où chaque choix compte.',
+            'version' => '1.0',
+            'is_published' => true,
+            'user_id' => 1,
+            'author' => 'Sauvage Lune Team'
         ]);
 
-        // Stocker les scènes créées avec leur ID personnalisée
-        $sceneMap = [];
+        // Créer les scènes
+        $scenes = [
+            [
+                'title' => 'Le Début',
+                'content' => 'Vous vous réveillez dans une clairière mystérieuse. Le soleil commence à se coucher et vous entendez des bruits étranges dans les buissons.',
+                'order' => 1,
+                'image' => null
+            ],
+            [
+                'title' => 'La Clairière',
+                'content' => 'La clairière est baignée d\'une lumière dorée. Des fleurs lumineuses dansent doucement dans la brise.',
+                'order' => 2,
+                'image' => null
+            ],
+            [
+                'title' => 'La Grotte',
+                'content' => 'Une grotte sombre s\'ouvre devant vous. Des cristaux brillants ornent ses parois.',
+                'order' => 3,
+                'image' => null
+            ]
+        ];
 
-        foreach ($jsonData['scenes'] as $sceneData) {
+        $createdScenes = [];
+        foreach ($scenes as $sceneData) {
             $scene = Scene::create([
-                'id' => $sceneData['id'],
                 'game_id' => $game->id,
                 'title' => $sceneData['title'],
-                'description' => $sceneData['description'],
-                'image' => $sceneData['image'] ?? null,
-                'is_ending' => $sceneData['is_ending'] ?? false,
-                'conditions' => $sceneData['conditions'] ?? null,
+                'content' => $sceneData['content'],
+                'order' => $sceneData['order'],
+                'image' => $sceneData['image']
             ]);
-
-            $sceneMap[$scene->id] = $scene->id;
+            $createdScenes[] = $scene;
         }
 
-        foreach ($jsonData['scenes'] as $sceneData) {
-            $originSceneId = $sceneData['id'];
-            foreach ($sceneData['choices'] ?? [] as $choiceData) {
-                $targetId = $choiceData['next_scene'];
-
-                if (!isset($sceneMap[$targetId])) {
-                    throw new \Exception("Scène cible '{$targetId}' non trouvée. Vérifie les IDs dans le JSON.");
-                }
-
+        // Ajouter des choix pour chaque scène
+        foreach ($createdScenes as $index => $scene) {
+            if ($index < count($createdScenes) - 1) {
                 Choice::create([
-                    'scene_id' => $originSceneId,
-                    'text' => $choiceData['text'],
-                    'next_scene' => $targetId,
-                    'effects' => $choiceData['effects'] ?? [],
-                    'conditions' => $choiceData['conditions'] ?? null,
+                    'game_id' => $game->id,
+                    'scene_id' => $scene->id,
+                    'text' => 'Continuer l\'aventure',
+                    'next_scene_id' => $createdScenes[$index + 1]->id,
+                    'order' => 1
                 ]);
             }
         }

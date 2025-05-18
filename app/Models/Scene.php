@@ -11,22 +11,16 @@ class Scene extends Model
 {
     use HasFactory;
 
-    public $incrementing = false; // car id = string ("PitchVogue")
-    protected $keyType = 'string';
-
     protected $fillable = [
-        'id',
         'game_id',
         'title',
-        'description',
+        'content',
         'image',
-        'is_ending',
-        'conditions',
+        'order',
     ];
 
     protected $casts = [
-        'is_ending' => 'boolean',
-        'conditions' => 'array',
+        'order' => 'integer',
     ];
 
     public function game(): BelongsTo
@@ -38,6 +32,4 @@ class Scene extends Model
     {
         return $this->hasMany(Choice::class);
     }
-
-    
 }
